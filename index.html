@@ -143,11 +143,16 @@
             .photos img {
                 width: calc(50% - 10px);
             }
+
+            html, body {
+                -webkit-overflow-scrolling: touch;
+            }
         }
 
         /* Prevent horizontal scrolling */
         html, body {
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
       
@@ -212,7 +217,6 @@
 /* Media Query for Mobile */
 @media (max-width: 768px) {
     .clock {
-        position: relative; /* Change to relative for mobile */
         margin-bottom: 20px; /* Add spacing below the clock */
     }
 }
@@ -363,6 +367,8 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
 
     // Initialize the clock on page load
     updateClock();
+
+    document.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     </script>
 </body>
