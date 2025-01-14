@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Gradient Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            overflow-y: auto;
+            background-color: var(--background-color);
+            height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            padding: 40px;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            touch-action: manipulation;
+        }
+
+        :root {
+            --background-color: #000;
+            --text-color: #f0f0f0;
+            --accent-color: #888;
+        }
+
+        .light-mode {
+            --background-color: #fff;
+            --text-color: #333;
+            --accent-color: #aaa;
+        }
+
+        /* Prevent page shifting on mobile */
+        html, body {
+            overflow-x: hidden;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .blurb {
+            margin-top: 80px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--accent-color);
+            font-size: 22px;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 40px; /* Tighter spacing between sections */
+        }
+
+        .section-title {
+            color: var(--text-color);  /* Primary color */
+            font-size: 18px;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .job-entry, .project-entry, .link-entry {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 5px; /* Tighter spacing */
+        }
+
+        .job-date, .project-date, .link-date {
+            font-size: 14px;
+            color: var(--accent-color);
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .job-title, .project-title, .link-title {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-left: 20px;
+            text-decoration: none;
+            flex-grow: 1;
+            transition: color 0.3s ease;
+        }
+
+        .job-title:hover, .project-title:hover, .link-title:hover {
+            color: var(--accent-color);
+        }
+
+        .section-description {
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 10px; /* Tighter spacing */
+            color: var(--accent-color);
+            margin-left: 200px; /* Align with job titles */
+        }
+
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .photos img {
+            width: calc(33.333% - 10px);
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: left;
+            font-size: 14px;
+            color: var(--accent-color);
+            border-top: 1px solid var(--accent-color);
+            padding-top: 10px;
+            line-height: 1.5;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Media Query for Mobile */
+        @media (max-width: 768px) {
+            .blurb {
+                font-size: 18px;
+            }
+
+            .photos img {
+                width: calc(50% - 10px);
+            }
+        }
+      
+      
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .blurb {
+        font-size: 18px;
+    }
+
+    .photos img {
+        width: calc(50% - 10px);
+    }
+
+    .job-date, .project-date, .link-date {
+        width: 30%; /* Adjust width for mobile */
+    }
+
+    .job-title, .project-title, .link-title, .section-description {
+        font-size: 16px; /* Ensure same text size on mobile */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .section-description {
+        margin-left: 30%; /* Align description with job title */
+    }
+
+    /* Add spacing between job groups */
+    .job-entry + .section-description {
+        margin-bottom: 20px; /* Space between job groups */
+    }
+}   
+      
+      /* Ensure text content has a higher z-index */
+.content {
+    position: relative;
+    z-index: 1; /* Higher than blob and blurred shapes */
+}
+
+.blurred-shape {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    filter: blur(75px);
+    opacity: 0.4;
+    background-blend-mode: overlay;
+    animation: fadeOut 3s ease-out forwards;
+    pointer-events: none;
+}
+
+/* Ensure text content has a higher z-index */
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+/* Clock Styling */
+.clock {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: var(--text-color);
+    font-size: 14px;
+    z-index: 10;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .clock {
+        position: relative; /* Change to relative for mobile */
+        margin-bottom: 20px; /* Add spacing below the clock */
+    }
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .clock {
+        position: fixed; /* Keep it fixed to the top */
+        top: 20px; /* Align with the top */
+        left: 20px; /* Align with the left */
+        font-size: 12px; /* Adjust font size if needed */
+        z-index: 10;
+    }
+}
+    </style>
+</head>
+<body>
+  
+  
+    <!-- Blurb Section -->
+  <div class="clock" id="clockDisplay"></div>
+  
+    <div class="content">
+        <div class="blob"></div>
+        <div class="content blurb">
+            <p>Hey, I'm Atara Weinreb. I design products and build iOS apps both for a living and for fun. Currently, I'm on my third team at Snapchat, developing tools to help UGC creators share their stories. Prior to this, I was part of Snap's AI-powered camera team, Scan, and before that, the design prototyping team. I thrive in collaborative environments and specialize in prototyping at all levels of fidelity—from pen and paper, to Figma, to code.
+          </p>
+<p>
+Creativity is at the heart of everything I do. I enjoy painting, making mosaics, and experimenting with interior design. Generative AI fascinates me, and I use it daily, whether I'm coding or creating art. Recently, with AI's help, I've been learning three.js, writing short fiction, and crafting art to brighten up my NYC apartment. I also love musical theatre (I saw Wicked four times!), even though I can't sing a note. I'm always up for chatting about tech, design, or any creative venture. If any of this resonates with you, let’s connect!
+</p>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="section">
+            <div class="section-title">Work</div>
+            <div class="job-entry">
+                <span class="job-date">2023 – Now</span>
+                <a href="https://www.snap.com" target="_blank" class="job-title">Creator Growth at Snap Inc.</a>
+            </div>
+            <div class="section-description">
+              Building tools for UGC creators
+            </div>
+
+            <div class="job-entry">
+                <span class="job-date">2020 – 2023</span>
+                <a href="https://www.snap.com" target="_blank" class="job-title">Scan at Snap Inc.</a>
+            </div>
+            <div class="section-description">
+               Visual and multimodal search 
+            </div>
+
+            <div class="job-entry">
+                <span class="job-date">2020</span>
+                <a href="https://www.snap.com" target="_blank" class="job-title">Design Prototyping at Snap Inc.</a>
+            </div>
+            <div class="section-description">
+              Prototyping, designing and exploring new directions for Snap
+            </div>
+            <div class="job-entry">
+                <span class="job-date">2020</span>
+                <a href="https://www.datadog.com" target="_blank" class="job-title">Datadog</a>
+            </div>
+            <div class="section-description">
+              Frontend intern, APM team
+            </div>
+
+            <div class="job-entry">
+                <span class="job-date">2019</span>
+                <a href="https://www.teladochealth.com" target="_blank" class="job-title">Teladoc</a>
+            </div>
+            <div class="section-description">
+              iOS intern, provider team
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+            <div class="section-title">Features</div>
+            <div class="project-entry">
+                <span class="project-date">2024</span>
+                <a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank" class="project-title">Simple Snapchat</a>
+            </div>
+            <div class="project-entry">
+                <span class="project-date">2021</span>
+                <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="project-title">Scan</a>
+            </div>
+            <div class="project-entry">
+                <span class="project-date">2021</span>
+                <a href="https://newsroom.snap.com/food-scan" target="_blank"  class="project-title">Food Scan</a>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="section">
+            <div class="section-title">Say Hi</div>
+            <div class="link-entry">
+                <span class="link-date">Email</span>
+                <a href="mailto:ataraweinreb@gmail.com" class="link-title">ataraweinreb@gmail.com</a>
+            </div>
+            <div class="link-entry">
+                <span class="link-date">LinkedIn</span>
+                <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank" class="link-title">linkedin.com/in/ataraweinreb</a>
+            </div>
+          <div class="link-entry">
+                <span class="link-date">Read.cv</span>
+                <a href="https://read.cv/atara" target="_blank" class="link-title">read.cv/atara</a>
+            </div>
+            <div class="link-entry">
+                <span class="link-date">Instagram</span>
+                <a href="https://instagram.com/ataraweinreb" target="_blank" class="link-title">@ataraweinreb</a>
+            </div>
+            <div class="link-entry">
+                <span class="link-date">GitHub</span>
+                <a href="https://github.com/ataraweinreb" target="_blank" class="link-title">@ataraweinreb</a>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>© 2025 Atara Weinreb</p>
+        </div>
+    </div>
+
+    <!-- Light/Dark Mode Toggle Button -->
+    <div class="toggle-button" id="toggleButton"></div>
+
+    <script>
+        // Toggle light/dark mode
+        const toggleButton = document.getElementById('toggleButton');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+      
+      // Create Blurred Shapes
+        function createBlurredShape(x, y) {
+            const color1 = `hsl(${Math.random() * 360}, 100%, 65%)`;
+            const color2 = `hsl(${Math.random() * 360}, 100%, 80%)`;
+            const shape = document.createElement('div');
+            shape.classList.add('blurred-shape');
+            shape.style.background = `radial-gradient(circle, ${color1}, ${color2})`;
+            shape.style.left = `${x - 75}px`;
+            shape.style.top = `${y - 75}px`;
+            document.body.appendChild(shape);
+            setTimeout(() => shape.remove(), 3000);
+        }
+
+        document.addEventListener('click', (e) => createBlurredShape(e.clientX, e.clientY));
+        document.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            createBlurredShape(touch.clientX, touch.clientY);
+        });
+
+
+    function updateClock() {
+        const clockDisplay = document.getElementById('clockDisplay');
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        clockDisplay.textContent = formattedTime;
+    }
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+
+    // Initialize the clock on page load
+    updateClock();
+
+    </script>
+</body>
+</html>
