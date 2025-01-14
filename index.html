@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Gradient Resume</title>
+    <title>Atara Weinreb</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
@@ -144,7 +144,12 @@
                 width: calc(50% - 10px);
             }
         }
-      
+
+        /* Prevent horizontal scrolling */
+        html, body {
+    overflow-x: hidden;
+}
+
       
 
 /* Media Query for Mobile */
@@ -182,25 +187,11 @@
     z-index: 1; /* Higher than blob and blurred shapes */
 }
 
-.blurred-shape {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    filter: blur(75px);
-    opacity: 0.4;
-    background-blend-mode: overlay;
-    animation: fadeOut 3s ease-out forwards;
-    pointer-events: none;
-}
-
 /* Ensure text content has a higher z-index */
 .content {
     position: relative;
     z-index: 1;
 }
-
-
 
 /* Clock Styling */
 .clock {
@@ -320,12 +311,16 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
                 <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank" class="link-title">linkedin.com/in/ataraweinreb</a>
             </div>
           <div class="link-entry">
-                <span class="link-date">Read.cv</span>
+                <span class="link-date">Resume</span>
                 <a href="https://read.cv/atara" target="_blank" class="link-title">read.cv/atara</a>
             </div>
             <div class="link-entry">
                 <span class="link-date">Instagram</span>
                 <a href="https://instagram.com/ataraweinreb" target="_blank" class="link-title">@ataraweinreb</a>
+            </div>
+            <div class="link-entry">
+                <span class="link-date">Codepen</span>
+                <a href="https://codepen.io/ataraweinreb/" target="_blank" class="link-title">@ataraweinreb</a>
             </div>
             <div class="link-entry">
                 <span class="link-date">GitHub</span>
@@ -347,25 +342,6 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
         const toggleButton = document.getElementById('toggleButton');
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-        });
-      
-      // Create Blurred Shapes
-        function createBlurredShape(x, y) {
-            const color1 = `hsl(${Math.random() * 360}, 100%, 65%)`;
-            const color2 = `hsl(${Math.random() * 360}, 100%, 80%)`;
-            const shape = document.createElement('div');
-            shape.classList.add('blurred-shape');
-            shape.style.background = `radial-gradient(circle, ${color1}, ${color2})`;
-            shape.style.left = `${x - 75}px`;
-            shape.style.top = `${y - 75}px`;
-            document.body.appendChild(shape);
-            setTimeout(() => shape.remove(), 3000);
-        }
-
-        document.addEventListener('click', (e) => createBlurredShape(e.clientX, e.clientY));
-        document.addEventListener('touchstart', (e) => {
-            const touch = e.touches[0];
-            createBlurredShape(touch.clientX, touch.clientY);
         });
 
 
