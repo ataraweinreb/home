@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <style>
         /* General Styling */
+        /* Apply smooth scrolling to both html and body */
+        html, body {
+            scroll-behavior: smooth; /* Smooth scrolling */
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+
         body {
             margin: 0;
             overflow-y: auto;
@@ -367,9 +373,6 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
 
     // Initialize the clock on page load
     updateClock();
-
-    document.addEventListener('touchmove', handleTouchMove, { passive: true });
-
     </script>
 </body>
 </html>
