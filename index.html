@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,26 @@
     <style>
         /* General Styling */
         /* Apply smooth scrolling to both html and body */
-        html, body {
-            scroll-behavior: smooth; /* Smooth scrolling */
-            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        html,
+        body {
+            scroll-behavior: smooth;
+            /* Smooth scrolling */
+            -webkit-overflow-scrolling: touch;
+            /* Enable smooth scrolling on iOS */
+            overflow-x: visible;
+            /* Allow horizontal scrolling if needed */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
         }
 
         body {
             margin: 0;
-            overflow-y: auto;
             background-color: var(--background-color);
             height: 100vh;
             font-family: 'Inter', sans-serif;
             color: var(--text-color);
             padding: 40px;
             box-sizing: border-box;
-            scroll-behavior: smooth;
             touch-action: manipulation;
         }
 
@@ -41,10 +47,6 @@
         }
 
         /* Prevent page shifting on mobile */
-        html, body {
-            overflow-x: hidden;
-        }
-
         .content {
             max-width: 800px;
             margin: 0 auto;
@@ -61,30 +63,39 @@
         }
 
         .section {
-            margin-bottom: 40px; /* Tighter spacing between sections */
+            margin-bottom: 40px;
+            /* Tighter spacing between sections */
         }
 
         .section-title {
-            color: var(--text-color);  /* Primary color */
+            color: var(--text-color);
+            /* Primary color */
             font-size: 18px;
             margin-bottom: 10px;
             letter-spacing: 0.05em;
         }
 
-        .job-entry, .project-entry, .link-entry {
+        .job-entry,
+        .project-entry,
+        .link-entry {
             display: flex;
             align-items: baseline;
-            margin-bottom: 5px; /* Tighter spacing */
+            margin-bottom: 5px;
+            /* Tighter spacing */
         }
 
-        .job-date, .project-date, .link-date {
+        .job-date,
+        .project-date,
+        .link-date {
             font-size: 14px;
             color: var(--accent-color);
             width: 180px;
             flex-shrink: 0;
         }
 
-        .job-title, .project-title, .link-title {
+        .job-title,
+        .project-title,
+        .link-title {
             font-size: 16px;
             color: var(--text-color);
             margin-left: 20px;
@@ -93,16 +104,20 @@
             transition: color 0.3s ease;
         }
 
-        .job-title:hover, .project-title:hover, .link-title:hover {
+        .job-title:hover,
+        .project-title:hover,
+        .link-title:hover {
             color: var(--accent-color);
         }
 
         .section-description {
             line-height: 1.8;
             font-size: 14px;
-            margin-bottom: 10px; /* Tighter spacing */
+            margin-bottom: 10px;
+            /* Tighter spacing */
             color: var(--accent-color);
-            margin-left: 200px; /* Align with job titles */
+            margin-left: 200px;
+            /* Align with job titles */
         }
 
         .photos {
@@ -150,109 +165,103 @@
                 width: calc(50% - 10px);
             }
 
-            html, body {
-                -webkit-overflow-scrolling: touch;
+            .job-date,
+            .project-date,
+            .link-date {
+                width: 30%;
+                /* Adjust width for mobile */
+            }
+
+            .job-title,
+            .project-title,
+            .link-title,
+            .section-description {
+                font-size: 16px;
+                /* Ensure same text size on mobile */
+                margin-left: 0;
+                /* Remove left margin */
+            }
+
+            .section-description {
+                margin-left: 30%;
+                /* Align description with job title */
+            }
+
+            /* Add spacing between job groups */
+            .job-entry+.section-description {
+                margin-bottom: 20px;
+                /* Space between job groups */
+            }
+
+            .job-title:hover,
+            .project-title:hover,
+            .link-title:hover {
+                color: var(--text-color);
             }
         }
 
-        /* Prevent horizontal scrolling */
-        html, body {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
+        /* Ensure text content has a higher z-index */
+        .content {
+            position: relative;
+            z-index: 1;
+            /* Higher than blob and blurred shapes */
+        }
 
-      
+        /* Clock Styling */
+        .clock {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: var(--text-color);
+            font-size: 14px;
+            z-index: 10;
+        }
 
-/* Media Query for Mobile */
-@media (max-width: 768px) {
-    .blurb {
-        font-size: 18px;
-    }
+        /* Media Query for Mobile */
+        @media (max-width: 768px) {
+            .clock {
+                margin-bottom: 20px;
+                /* Add spacing below the clock */
+            }
 
-    .photos img {
-        width: calc(50% - 10px);
-    }
-
-    .job-date, .project-date, .link-date {
-        width: 30%; /* Adjust width for mobile */
-    }
-
-    .job-title, .project-title, .link-title, .section-description {
-        font-size: 16px; /* Ensure same text size on mobile */
-        margin-left: 0; /* Remove left margin */
-    }
-
-    .section-description {
-        margin-left: 30%; /* Align description with job title */
-    }
-
-    /* Add spacing between job groups */
-    .job-entry + .section-description {
-        margin-bottom: 20px; /* Space between job groups */
-    }
-    
-    .job-title:hover,
-  .project-title:hover,
-  .link-title:hover {
-    color: var(--text-color);
-  }
-}   
-      
-      /* Ensure text content has a higher z-index */
-.content {
-    position: relative;
-    z-index: 1; /* Higher than blob and blurred shapes */
-}
-
-/* Ensure text content has a higher z-index */
-.content {
-    position: relative;
-    z-index: 1;
-}
-
-/* Clock Styling */
-.clock {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    color: var(--text-color);
-    font-size: 14px;
-    z-index: 10;
-}
-
-/* Media Query for Mobile */
-@media (max-width: 768px) {
-    .clock {
-        margin-bottom: 20px; /* Add spacing below the clock */
-    }
-}
-
-/* Media Query for Mobile */
-@media (max-width: 768px) {
-    .clock {
-        position: fixed; /* Keep it fixed to the top */
-        top: 20px; /* Align with the top */
-        left: 20px; /* Align with the left */
-        font-size: 12px; /* Adjust font size if needed */
-        z-index: 10;
-    }
-}
+            .clock {
+                position: fixed;
+                /* Keep it fixed to the top */
+                top: 20px;
+                /* Align with the top */
+                left: 20px;
+                /* Align with the left */
+                font-size: 12px;
+                /* Adjust font size if needed */
+                z-index: 10;
+            }
+        }
     </style>
 </head>
+
 <body>
-  
-  
+
+
     <!-- Blurb Section -->
-  <div class="clock" id="clockDisplay"></div>
-  
+    <div class="clock" id="clockDisplay"></div>
+
     <div class="content">
         <div class="blob"></div>
         <div class="content blurb">
-            <p>Hey, I'm Atara Weinreb. I design products and build iOS apps both for a living and for fun. Currently, I'm on my third team at Snapchat, developing tools to help UGC creators share their stories. Prior to this, I was part of Snap's AI-powered camera team, Scan, and before that, the design prototyping team. I thrive in collaborative environments and specialize in prototyping at all levels of fidelity—from pen and paper, to Figma, to code.
-          </p>
-<p>
-Creativity is at the heart of everything I do. I enjoy painting, making mosaics, and experimenting with interior design. Generative AI fascinates me, and I use it daily, whether I'm coding or creating art. Recently, with AI's help, I've been learning three.js, writing short fiction, and crafting art to brighten up my NYC apartment. I also love musical theatre (I saw Wicked four times!), even though I can't sing a note. I'm always up for chatting about tech, design, or any creative venture. If any of this resonates with you, let’s connect!
-</p>
+            <p>Hey, I'm Atara Weinreb. I design products and build iOS apps both for a living and for fun. Currently,
+                I'm on my third team at Snapchat, developing tools to help UGC creators share their stories. Prior to
+                this, I was part of Snap's AI-powered camera team, Scan, and before that, the design prototyping team. I
+                thrive in collaborative environments and specialize in prototyping at all levels of fidelity—from pen
+                and paper, to Figma, to code.
+            </p>
+            <p>
+                Creativity is at the heart of everything I do. I enjoy painting, making mosaics, and experimenting with
+                interior design. Generative AI fascinates me, and I use it daily, whether I'm coding or creating art.
+                Recently, with AI's help, I've been learning three.js, writing short fiction, and crafting art to
+                brighten up my NYC apartment. I also love musical theatre (I saw Wicked four times!), even though I
+                can't sing a note. I'm always up for chatting about tech, design, or any creative venture. If any of
+                this resonates with you, let’s connect!
+            </p>
         </div>
 
         <!-- Work Experience Section -->
@@ -263,7 +272,7 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
                 <a href="https://www.snap.com" target="_blank" class="job-title">Creator Growth at Snap Inc.</a>
             </div>
             <div class="section-description">
-              Building tools for UGC creators
+                Building tools for UGC creators
             </div>
 
             <div class="job-entry">
@@ -271,7 +280,7 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
                 <a href="https://www.snap.com" target="_blank" class="job-title">Scan at Snap Inc.</a>
             </div>
             <div class="section-description">
-               Visual and multimodal search 
+                Visual and multimodal search
             </div>
 
             <div class="job-entry">
@@ -279,14 +288,14 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
                 <a href="https://www.snap.com" target="_blank" class="job-title">Design Prototyping at Snap Inc.</a>
             </div>
             <div class="section-description">
-              Prototyping, designing and exploring new directions for Snap
+                Prototyping, designing and exploring new directions for Snap
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
                 <a href="https://www.datadog.com" target="_blank" class="job-title">Datadog</a>
             </div>
             <div class="section-description">
-              Frontend intern, APM team
+                Frontend intern, APM team
             </div>
 
             <div class="job-entry">
@@ -294,7 +303,7 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
                 <a href="https://www.teladochealth.com" target="_blank" class="job-title">Teladoc</a>
             </div>
             <div class="section-description">
-              iOS intern, provider team
+                iOS intern, provider team
             </div>
         </div>
 
@@ -303,15 +312,17 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
             <div class="section-title">Features</div>
             <div class="project-entry">
                 <span class="project-date">2024</span>
-                <a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank" class="project-title">Simple Snapchat</a>
+                <a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight"
+                    target="_blank" class="project-title">Simple Snapchat</a>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="project-title">Scan</a>
+                <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search"
+                    target="_blank" class="project-title">Scan</a>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <a href="https://newsroom.snap.com/food-scan" target="_blank"  class="project-title">Food Scan</a>
+                <a href="https://newsroom.snap.com/food-scan" target="_blank" class="project-title">Food Scan</a>
             </div>
         </div>
 
@@ -324,9 +335,10 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
             </div>
             <div class="link-entry">
                 <span class="link-date">LinkedIn</span>
-                <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank" class="link-title">linkedin.com/in/ataraweinreb</a>
+                <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank"
+                    class="link-title">linkedin.com/in/ataraweinreb</a>
             </div>
-          <div class="link-entry">
+            <div class="link-entry">
                 <span class="link-date">Resume</span>
                 <a href="https://read.cv/atara" target="_blank" class="link-title">read.cv/atara</a>
             </div>
@@ -361,18 +373,19 @@ Creativity is at the heart of everything I do. I enjoy painting, making mosaics,
         });
 
 
-    function updateClock() {
-        const clockDisplay = document.getElementById('clockDisplay');
-        const now = new Date();
-        const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        clockDisplay.textContent = formattedTime;
-    }
+        function updateClock() {
+            const clockDisplay = document.getElementById('clockDisplay');
+            const now = new Date();
+            const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            clockDisplay.textContent = formattedTime;
+        }
 
-    // Update the clock every second
-    setInterval(updateClock, 1000);
+        // Update the clock every second
+        setInterval(updateClock, 1000);
 
-    // Initialize the clock on page load
-    updateClock();
+        // Initialize the clock on page load
+        updateClock();
     </script>
 </body>
+
 </html>
