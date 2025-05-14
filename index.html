@@ -124,8 +124,13 @@
         .link-title a {
             color: var(--body-text-color);
             text-decoration: none;
-            transition: color 0.3s ease;
             display: inline-block;
+        }
+
+        .job-title a.visited,
+        .project-title a.visited,
+        .link-title a.visited {
+            color: var(--text-color);
         }
 
         /* Desktop hover effects */
@@ -312,7 +317,7 @@
             <div class="section-title">Work</div>
             <div class="job-entry">
                 <span class="job-date">2023 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank">Creator Growth at Snap Inc.</a></span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Creator Growth at Snap Inc.</a></span>
             </div>
             <div class="section-description">
                 Building tools for UGC creators
@@ -320,7 +325,7 @@
 
             <div class="job-entry">
                 <span class="job-date">2020 – 2023</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank">Scan at Snap Inc.</a></span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Scan at Snap Inc.</a></span>
             </div>
             <div class="section-description">
                 Visual and multimodal search
@@ -328,14 +333,14 @@
 
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank">Design Prototyping at Snap Inc.</a></span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Design Prototyping at Snap Inc.</a></span>
             </div>
             <div class="section-description">
                 Prototyping, designing and exploring
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.datadog.com" target="_blank">Datadog</a></span>
+                <span class="job-title"><a href="https://www.datadog.com" target="_blank" class="external-link">Datadog</a></span>
             </div>
             <div class="section-description">
                 Frontend intern, APM team
@@ -343,7 +348,7 @@
 
             <div class="job-entry">
                 <span class="job-date">2019</span>
-                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank">Teladoc</a></span>
+                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link">Teladoc</a></span>
             </div>
             <div class="section-description">
                 iOS intern, provider team
@@ -355,15 +360,15 @@
             <div class="section-title">Features</div>
             <div class="project-entry">
                 <span class="project-date">2024</span>
-                <span class="project-title"><a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank">Simple Snapchat</a></span>
+                <span class="project-title"><a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank" class="external-link">Simple Snapchat</a></span>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <span class="project-title"><a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank">Scan</a></span>
+                <span class="project-title"><a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="external-link">Scan</a></span>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <span class="project-title"><a href="https://newsroom.snap.com/food-scan" target="_blank">Food Scan</a></span>
+                <span class="project-title"><a href="https://newsroom.snap.com/food-scan" target="_blank" class="external-link">Food Scan</a></span>
             </div>
         </div>
 
@@ -372,23 +377,23 @@
             <div class="section-title">Say Hi</div>
             <div class="link-entry">
                 <span class="link-date">Email</span>
-                <span class="link-title"><a href="mailto:ataraweinreb@gmail.com">ataraweinreb@gmail.com</a></span>
+                <span class="link-title"><a href="mailto:ataraweinreb@gmail.com" class="external-link">ataraweinreb@gmail.com</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">LinkedIn</span>
-                <span class="link-title"><a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank">linkedin.com/in/ataraweinreb</a></span>
+                <span class="link-title"><a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank" class="external-link">linkedin.com/in/ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">Instagram</span>
-                <span class="link-title"><a href="https://instagram.com/ataraweinreb" target="_blank">@ataraweinreb</a></span>
+                <span class="link-title"><a href="https://instagram.com/ataraweinreb" target="_blank" class="external-link">@ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">Codepen</span>
-                <span class="link-title"><a href="https://codepen.io/ataraweinreb/" target="_blank">@ataraweinreb</a></span>
+                <span class="link-title"><a href="https://codepen.io/ataraweinreb/" target="_blank" class="external-link">@ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">GitHub</span>
-                <span class="link-title"><a href="https://github.com/ataraweinreb" target="_blank">@ataraweinreb</a></span>
+                <span class="link-title"><a href="https://github.com/ataraweinreb" target="_blank" class="external-link">@ataraweinreb</a></span>
             </div>
         </div>
 
@@ -405,6 +410,33 @@
             document.body.classList.toggle('light-mode');
         });
 
+        // Track visited links
+        document.querySelectorAll('.external-link').forEach(link => {
+            link.addEventListener('click', () => {
+                localStorage.setItem('visited_' + link.href, 'true');
+                link.classList.add('visited');
+                // Remove hover state
+                link.style.color = 'var(--text-color)';
+            });
+            
+            // Check if link was previously visited
+            if (localStorage.getItem('visited_' + link.href) === 'true') {
+                link.classList.add('visited');
+            }
+
+            // Handle hover state
+            link.addEventListener('mouseenter', () => {
+                if (link.classList.contains('visited')) {
+                    link.style.color = 'var(--accent-color)';
+                }
+            });
+
+            link.addEventListener('mouseleave', () => {
+                if (link.classList.contains('visited')) {
+                    link.style.color = 'var(--text-color)';
+                }
+            });
+        });
 
         function updateClock() {
             const clockDisplay = document.getElementById('clockDisplay');
