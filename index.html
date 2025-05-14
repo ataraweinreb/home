@@ -28,11 +28,15 @@
             margin: 0;
             background-color: var(--background-color);
             min-height: 100vh;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             color: var(--text-color);
             padding: 40px;
             box-sizing: border-box;
             touch-action: manipulation;
+        }
+
+        * {
+            font-family: inherit;
         }
 
         :root {
@@ -60,7 +64,6 @@
             margin-top: 80px;
             margin-bottom: 40px;
             padding-bottom: 20px;
-            border-bottom: 1px solid var(--accent-color);
             font-size: 22px;
             line-height: 1.8;
             color: var(--body-text-color);
@@ -104,23 +107,49 @@
             color: var(--accent-color);
             width: 180px;
             flex-shrink: 0;
+            pointer-events: none;
         }
 
         .job-title,
         .project-title,
         .link-title {
             font-size: 16px;
-            color: var(--text-color);
+            color: var(--body-text-color);
             margin-left: 20px;
-            text-decoration: none;
             flex-grow: 1;
-            transition: color 0.3s ease;
         }
 
-        .job-title:hover,
-        .project-title:hover,
-        .link-title:hover {
-            color: var(--accent-color);
+        .job-title a,
+        .project-title a,
+        .link-title a {
+            color: var(--body-text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        /* Desktop hover effects */
+        @media (hover: hover) {
+            .job-title a:hover,
+            .project-title a:hover,
+            .link-title a:hover {
+                color: var(--accent-color);
+            }
+        }
+
+        /* Mobile styles - no hover effects */
+        @media (max-width: 768px) {
+            .job-title a,
+            .project-title a,
+            .link-title a {
+                transition: none;
+            }
+            
+            .job-title a:hover,
+            .project-title a:hover,
+            .link-title a:hover {
+                color: var(--body-text-color) !important;
+            }
         }
 
         .section-description {
@@ -152,17 +181,26 @@
             text-align: left;
             font-size: 14px;
             color: var(--accent-color);
-            border-top: 1px solid var(--accent-color);
+            border-top: 0.25px solid rgba(136, 136, 136, 0.3);
             padding-top: 10px;
             line-height: 1.5;
         }
 
+        .clock {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: var(--text-color);
+            font-size: 14px;
+            z-index: 10;
+        }
+
         .toggle-button {
             position: fixed;
-            top: 36px;
+            top: 40px;
             right: 40px;
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             background-color: var(--text-color);
             border-radius: 50%;
             cursor: pointer;
@@ -170,8 +208,17 @@
 
         /* Media Query for Mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 40px;
+            }
+
+            .content {
+                margin-top: 80px;
+            }
+
             .blurb {
                 font-size: 18px;
+                margin-top: 0;
             }
 
             .photos img {
@@ -206,10 +253,20 @@
                 /* Space between job groups */
             }
 
-            .job-title:hover,
-            .project-title:hover,
-            .link-title:hover {
-                color: var(--text-color);
+            .clock {
+                position: static;
+                display: inline-block;
+                margin: 0;
+                font-size: 12px;
+            }
+
+            .toggle-button {
+                position: static;
+                display: inline-block;
+                float: right;
+                width: 20px;
+                height: 20px;
+                margin: 0;
             }
         }
 
@@ -219,31 +276,6 @@
             z-index: 1;
             /* Higher than blob and blurred shapes */
         }
-
-        /* Clock Styling */
-        .clock {
-            position: fixed;
-            /* top: 20px;
-            left: 20px; */
-            color: var(--text-color);
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        /* Media Query for Mobile */
-        @media (max-width: 768px) {
-            .clock {
-                position: static;
-                font-size: 12px;
-            }
-
-            .toggle-button {
-                right: 30px;
-                width: 20px;
-                height: 20px;
-            }
-
-        }
     </style>
 </head>
 
@@ -252,6 +284,7 @@
 
     <!-- Blurb Section -->
     <div class="clock" id="clockDisplay"></div>
+    <div class="toggle-button" id="toggleButton"></div>
 
     <div class="content">
         <div class="blob"></div>
@@ -279,7 +312,7 @@
             <div class="section-title">Work</div>
             <div class="job-entry">
                 <span class="job-date">2023 – Now</span>
-                <a href="https://www.snap.com" target="_blank" class="job-title">Creator Growth at Snap Inc.</a>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank">Creator Growth at Snap Inc.</a></span>
             </div>
             <div class="section-description">
                 Building tools for UGC creators
@@ -287,7 +320,7 @@
 
             <div class="job-entry">
                 <span class="job-date">2020 – 2023</span>
-                <a href="https://www.snap.com" target="_blank" class="job-title">Scan at Snap Inc.</a>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank">Scan at Snap Inc.</a></span>
             </div>
             <div class="section-description">
                 Visual and multimodal search
@@ -295,14 +328,14 @@
 
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <a href="https://www.snap.com" target="_blank" class="job-title">Design Prototyping at Snap Inc.</a>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank">Design Prototyping at Snap Inc.</a></span>
             </div>
             <div class="section-description">
-                Prototyping, designing and exploring new features
+                Prototyping, designing and exploring
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <a href="https://www.datadog.com" target="_blank" class="job-title">Datadog</a>
+                <span class="job-title"><a href="https://www.datadog.com" target="_blank">Datadog</a></span>
             </div>
             <div class="section-description">
                 Frontend intern, APM team
@@ -310,7 +343,7 @@
 
             <div class="job-entry">
                 <span class="job-date">2019</span>
-                <a href="https://www.teladochealth.com" target="_blank" class="job-title">Teladoc</a>
+                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank">Teladoc</a></span>
             </div>
             <div class="section-description">
                 iOS intern, provider team
@@ -322,17 +355,15 @@
             <div class="section-title">Features</div>
             <div class="project-entry">
                 <span class="project-date">2024</span>
-                <a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight"
-                    target="_blank" class="project-title">Simple Snapchat</a>
+                <span class="project-title"><a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank">Simple Snapchat</a></span>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search"
-                    target="_blank" class="project-title">Scan</a>
+                <span class="project-title"><a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank">Scan</a></span>
             </div>
             <div class="project-entry">
                 <span class="project-date">2021</span>
-                <a href="https://newsroom.snap.com/food-scan" target="_blank" class="project-title">Food Scan</a>
+                <span class="project-title"><a href="https://newsroom.snap.com/food-scan" target="_blank">Food Scan</a></span>
             </div>
         </div>
 
@@ -341,24 +372,23 @@
             <div class="section-title">Say Hi</div>
             <div class="link-entry">
                 <span class="link-date">Email</span>
-                <a href="mailto:ataraweinreb@gmail.com" class="link-title">ataraweinreb@gmail.com</a>
+                <span class="link-title"><a href="mailto:ataraweinreb@gmail.com">ataraweinreb@gmail.com</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">LinkedIn</span>
-                <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank"
-                    class="link-title">linkedin.com/in/ataraweinreb</a>
+                <span class="link-title"><a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank">linkedin.com/in/ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">Instagram</span>
-                <a href="https://instagram.com/ataraweinreb" target="_blank" class="link-title">@ataraweinreb</a>
+                <span class="link-title"><a href="https://instagram.com/ataraweinreb" target="_blank">@ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">Codepen</span>
-                <a href="https://codepen.io/ataraweinreb/" target="_blank" class="link-title">@ataraweinreb</a>
+                <span class="link-title"><a href="https://codepen.io/ataraweinreb/" target="_blank">@ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">GitHub</span>
-                <a href="https://github.com/ataraweinreb" target="_blank" class="link-title">@ataraweinreb</a>
+                <span class="link-title"><a href="https://github.com/ataraweinreb" target="_blank">@ataraweinreb</a></span>
             </div>
         </div>
 
@@ -367,9 +397,6 @@
             <p>© 2025 Atara Weinreb</p>
         </div>
     </div>
-
-    <!-- Light/Dark Mode Toggle Button -->
-    <div class="toggle-button" id="toggleButton"></div>
 
     <script>
         // Toggle light/dark mode
