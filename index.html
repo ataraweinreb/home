@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atara Weinreb</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
         /* General Styling */
         /* Apply smooth scrolling to both html and body */
@@ -38,12 +39,14 @@
             --background-color: #000;
             --text-color: #f0f0f0;
             --accent-color: #888;
+            --body-text-color: #d0d0d0;
         }
 
         .light-mode {
             --background-color: #fff;
             --text-color: #333;
             --accent-color: #aaa;
+            --body-text-color: #666;
         }
 
         /* Prevent page shifting on mobile */
@@ -60,6 +63,16 @@
             border-bottom: 1px solid var(--accent-color);
             font-size: 22px;
             line-height: 1.8;
+            color: var(--body-text-color);
+            font-weight: light;
+        }
+
+        .blurb .intro {
+            font-size: 28px;
+            font-weight: medium;
+            display: block;
+            margin-bottom: 15px;
+            color: var(--text-color);
         }
 
         .section {
@@ -243,7 +256,9 @@
     <div class="content">
         <div class="blob"></div>
         <div class="content blurb">
-            <p>Hey, I'm Atara Weinreb. I design products and build iOS apps both for a living and for fun. Currently,
+            <p>
+                <span class="intro">Hey, I'm Atara Weinreb.</span>
+                I build and design iOS apps both for a living and for fun. Currently,
                 I'm on my third team at Snapchat, developing tools to help UGC creators share their stories. Prior to
                 this, I was part of Snap's AI-powered camera team, Scan, and before that, the design prototyping team. I
                 thrive in collaborative environments and specialize in prototyping at all levels of fidelity—from pen
@@ -255,7 +270,7 @@
                 Recently, with AI's help, I've been learning three.js, writing short fiction, and crafting art to
                 brighten up my NYC apartment. I also love musical theatre (I saw Wicked four times!), even though I
                 can't sing a note. I'm always up for chatting about tech, design, or any creative venture. If any of
-                this resonates with you, let’s connect!
+                this resonates with you, let's connect!
             </p>
         </div>
 
@@ -332,10 +347,6 @@
                 <span class="link-date">LinkedIn</span>
                 <a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank"
                     class="link-title">linkedin.com/in/ataraweinreb</a>
-            </div>
-            <div class="link-entry">
-                <span class="link-date">Resume</span>
-                <a href="https://read.cv/atara" target="_blank" class="link-title">read.cv/atara</a>
             </div>
             <div class="link-entry">
                 <span class="link-date">Instagram</span>
