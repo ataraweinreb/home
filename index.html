@@ -211,7 +211,38 @@
             cursor: pointer;
         }
 
-        /* Media Query for Mobile */
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle svg {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle__dark-side {
+            transition: transform 0.3s ease;
+        }
+
+        .light-mode .theme-toggle__dark-side {
+            transform: rotate(180deg);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 40px;
@@ -265,13 +296,18 @@
                 font-size: 12px;
             }
 
-            .toggle-button {
-                position: static;
-                display: inline-block;
-                float: right;
-                width: 20px;
-                height: 20px;
-                margin: 0;
+            .theme-toggle {
+                top: 36px;
+                right: 24px;
+                width: 32px;
+                height: 32px;
+                position: absolute;
+                display: block;
+            }
+
+            .theme-toggle svg {
+                width: 1.2em;
+                height: 1.2em;
             }
         }
 
@@ -289,7 +325,24 @@
 
     <!-- Blurb Section -->
     <div class="clock" id="clockDisplay"></div>
-    <div class="toggle-button" id="toggleButton"></div>
+    <button
+        class="theme-toggle"
+        type="button"
+        title="Toggle theme"
+        aria-label="Toggle theme"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            width="1em"
+            height="1em"
+            class="theme-toggle__dark-side"
+            fill="currentColor"
+            viewBox="0 0 32 32"
+        >
+            <path d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z" />
+        </svg>
+    </button>
 
     <div class="content">
         <div class="blob"></div>
@@ -405,7 +458,7 @@
 
     <script>
         // Toggle light/dark mode
-        const toggleButton = document.getElementById('toggleButton');
+        const toggleButton = document.querySelector('.theme-toggle');
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
         });
