@@ -337,6 +337,32 @@
             z-index: 1;
             /* Higher than blob and blurred shapes */
         }
+
+        .job-role {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .job-teams {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: var(--accent-color);
+            font-size: 15px;
+        }
+        .job-teams li {
+            margin-bottom: 0;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.2em;
+        }
+        .job-teams li::before {
+            content: "–";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 1em;
+        }
     </style>
 </head>
 
@@ -389,48 +415,36 @@
         <div class="section">
             <div class="section-title">Work</div>
             <div class="job-entry">
-                <span class="job-date">2023 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Creator Growth at Snap Inc.</a></span>
+                <span class="job-date">2020 – Now</span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Snap Inc.</a></span>
             </div>
             <div class="section-description">
-                Building tools for UGC creators
-            </div>
-
-            <div class="job-entry">
-                <span class="job-date">2020 – 2023</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Scan at Snap Inc.</a></span>
-            </div>
-            <div class="section-description">
-                Visual and multimodal search
-            </div>
-
-            <div class="job-entry">
-                <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Design Prototyping at Snap Inc.</a></span>
-            </div>
-            <div class="section-description">
-                Prototyping, designing and exploring
+                <span class="job-role">iOS Engineer / Product Designer</span>
+                <ul class="job-teams">
+                    <li>Creator Growth, 2023 – Now</li>
+                    <li>Multimodal Search, 2020 – 2023</li>
+                    <li>Design Prototyping, 2020</li>
+                </ul>
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
                 <span class="job-title"><a href="https://www.datadog.com" target="_blank" class="external-link">Datadog</a></span>
             </div>
             <div class="section-description">
-                Frontend intern, APM team
+                Frontend Engineer Intern, APM team
             </div>
-
             <div class="job-entry">
                 <span class="job-date">2019</span>
                 <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link">Teladoc</a></span>
             </div>
             <div class="section-description">
-                iOS intern, provider team
+                iOS Engineer Intern, Provider team
             </div>
         </div>
 
         <!-- Industry Projects Section -->
         <div class="section">
-            <div class="section-title">Industry</div>
+            <div class="section-title">Features</div>
             <div class="project-entry">
                 <span class="project-date">2024</span>
                 <span class="project-title"><a href="https://www.theverge.com/2024/9/17/24246999/snapchat-redesign-three-tabs-stories-spotlight" target="_blank" class="external-link">Simple Snapchat</a></span>
@@ -447,7 +461,7 @@
 
         <!-- Passion Projects Section -->
         <div class="section">
-            <div class="section-title">Personal</div>
+            <div class="section-title">Side Projects</div>
             <div class="project-entry">
                 <span class="project-date">2025</span>
                 <span class="project-title"><a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="external-link">Swipe to Clean</a></span>
