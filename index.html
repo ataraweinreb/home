@@ -38,7 +38,7 @@
             margin: 0;
             background-color: var(--background-color);
             min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
             color: var(--text-color);
             padding: 40px;
             box-sizing: border-box;
@@ -46,7 +46,7 @@
         }
 
         * {
-            font-family: inherit;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         :root {
@@ -77,15 +77,17 @@
             font-size: 22px;
             line-height: 1.8;
             color: var(--body-text-color);
-            font-weight: light;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .blurb .intro {
             font-size: 28px;
-            font-weight: medium;
+            font-weight: 400;
             display: block;
             margin-bottom: 15px;
             color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .section {
@@ -97,8 +99,10 @@
             color: var(--text-color);
             /* Primary color */
             font-size: 18px;
+            font-weight: 400;
             margin-bottom: 10px;
             letter-spacing: 0.05em;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .job-entry,
@@ -118,6 +122,8 @@
             width: 180px;
             flex-shrink: 0;
             pointer-events: none;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .job-title,
@@ -127,14 +133,18 @@
             color: var(--body-text-color);
             margin-left: 20px;
             flex-grow: 1;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .job-title a,
         .project-title a,
         .link-title a {
-            color: var(--body-text-color);
+            color: var(--text-color);
             text-decoration: none;
             display: inline-block;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .job-title a.visited,
@@ -146,9 +156,18 @@
         /* External link arrow */
         .external-link::after {
             content: "↗";
-            margin-left: 4px;
-            font-size: 0.8em;
-            opacity: 0.7;
+            margin-left: 6px;
+            font-size: 0.9em;
+            opacity: 0.8;
+            font-weight: 400;
+            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+
+        /* Hide arrows on non-Apple devices */
+        @supports not (-webkit-appearance: none) {
+            .external-link::after {
+                display: none;
+            }
         }
 
         /* Desktop hover effects */
@@ -161,11 +180,12 @@
         }
 
         /* Mobile styles - no hover effects */
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             .job-title a,
             .project-title a,
             .link-title a {
                 transition: none;
+                pointer-events: auto;
             }
             
             .job-title a:hover,
@@ -195,6 +215,8 @@
             color: var(--accent-color);
             margin-left: 200px;
             /* Align with job titles */
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .photos {
@@ -219,6 +241,7 @@
             border-top: 0.25px solid rgba(136, 136, 136, 0.3);
             padding-top: 10px;
             line-height: 1.5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .clock {
@@ -228,6 +251,7 @@
             color: var(--text-color);
             font-size: 14px;
             z-index: 10;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
         .toggle-button {
@@ -273,7 +297,7 @@
             transform: rotate(180deg);
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             body {
                 padding: 40px;
             }
@@ -291,42 +315,53 @@
                 width: calc(50% - 10px);
             }
 
+            .job-entry,
+            .project-entry,
+            .link-entry {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 0;
+            }
+            .link-entry {
+                margin-bottom: 24px;
+            }
+            .job-entry+.section-description,
+            .project-entry+.section-description,
+            .link-entry+.section-description {
+                margin-top: 0;
+                margin-bottom: 30px;
+            }
             .job-date,
             .project-date,
             .link-date {
-                width: 30%;
-                /* Adjust width for mobile */
+                width: auto;
+                margin-left: 0;
+                margin-bottom: 4px;
+                font-size: 12px;
+                color: var(--accent-color);
             }
-
             .job-title,
             .project-title,
             .link-title {
-                font-size: 16px;
-                /* Keep titles 16*/
                 margin-left: 0;
-                /* Remove left margin */
+                margin-top: 0;
+                margin-bottom: 6px;
+                font-size:16px;
             }
-
             .section-description {
                 font-size: 14px;
-                /* Make descriptions smaller than titles */
-                margin-left: 30%;
-                /* Align description with job title */
+                margin-left: 0;
             }
-
             /* Add spacing between job groups */
             .job-entry+.section-description {
                 margin-bottom: 20px;
-                /* Space between job groups */
             }
-
             .clock {
                 position: static;
                 display: inline-block;
                 margin: 0;
                 font-size: 12px;
             }
-
             .theme-toggle {
                 top: 34px;
                 right: 24px;
@@ -335,10 +370,12 @@
                 position: absolute;
                 display: block;
             }
-
             .theme-toggle svg {
                 width: 1.2em;
                 height: 1.2em;
+            }
+            .section-gap {
+                height: 40px;
             }
         }
 
@@ -480,7 +517,7 @@
                 iOS Engineer Intern, Provider team
             </div>
         </div>
-
+        <div class="section-gap"></div>
         <!-- Industry Projects Section -->
         <div class="section">
             <div class="section-title">Features</div>
@@ -610,18 +647,26 @@
                 link.classList.add('visited');
             }
 
-            // Handle hover state
-            link.addEventListener('mouseenter', () => {
-                if (link.classList.contains('visited')) {
-                    link.style.color = 'var(--accent-color)';
-                }
-            });
+            // Function to check if we're on mobile
+            function isMobile() {
+                return window.innerWidth <= 768 || ('ontouchstart' in window);
+            }
 
-            link.addEventListener('mouseleave', () => {
-                if (link.classList.contains('visited')) {
-                    link.style.color = 'var(--text-color)';
-                }
-            });
+            // Only add hover effects on desktop (not mobile)
+            if (!isMobile()) {
+                // Handle hover state
+                link.addEventListener('mouseenter', () => {
+                    if (link.classList.contains('visited')) {
+                        link.style.color = 'var(--accent-color)';
+                    }
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    if (link.classList.contains('visited')) {
+                        link.style.color = 'var(--text-color)';
+                    }
+                });
+            }
         });
 
         function updateClock() {
