@@ -342,6 +342,33 @@
             }
         }
 
+        /* iPad specific styles */
+        @media (min-width: 768px) and (max-width: 1200px) {
+            .header-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .clock {
+                position: static;
+                display: block;
+                margin: 0;
+                font-size: 14px;
+            }
+            .theme-toggle {
+                position: static;
+                display: block;
+                margin: 0;
+                width: 40px;
+                height: 40px;
+            }
+            .theme-toggle svg {
+                width: 1.5em;
+                height: 1.5em;
+            }
+        }
+
         /* Ensure text content has a higher z-index */
         .content {
             position: relative;
@@ -359,7 +386,7 @@
             padding: 0;
             list-style: none;
             color: var(--accent-color);
-            font-size: 15px;
+            font-size: 14px;
         }
         .job-teams li {
             margin-bottom: 0;
@@ -381,25 +408,27 @@
 
 
     <!-- Blurb Section -->
-    <div class="clock" id="clockDisplay"></div>
-    <button
-        class="theme-toggle"
-        type="button"
-        title="Toggle theme"
-        aria-label="Toggle theme"
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            width="1em"
-            height="1em"
-            class="theme-toggle__dark-side"
-            fill="currentColor"
-            viewBox="0 0 32 32"
+    <div class="header-row">
+        <div class="clock" id="clockDisplay"></div>
+        <button
+            class="theme-toggle"
+            type="button"
+            title="Toggle theme"
+            aria-label="Toggle theme"
         >
-            <path d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z" />
-        </svg>
-    </button>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                width="1em"
+                height="1em"
+                class="theme-toggle__dark-side"
+                fill="currentColor"
+                viewBox="0 0 32 32"
+            >
+                <path d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z" />
+            </svg>
+        </button>
+    </div>
 
     <div class="content">
         <div class="blob"></div>
@@ -424,7 +453,7 @@
 
         <!-- Work Experience Section -->
         <div class="section">
-            <div class="section-title">Work</div>
+            <div class="section-title">Experience</div>
             <div class="job-entry">
                 <span class="job-date">2020 – Now</span>
                 <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Snap Inc.</a></span>
@@ -455,7 +484,7 @@
 
         <!-- Industry Projects Section -->
         <div class="section">
-            <div class="section-title">Shipped</div>
+            <div class="section-title">Features</div>
             <div class="project-entry">
                 <span class="project-date">2024 - Now</span>
                 <span class="project-title"><a href="https://creators.snapchat.com/" target="_blank" class="external-link">Snapchat Creators</a></span>
