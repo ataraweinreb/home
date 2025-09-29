@@ -219,6 +219,16 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
+        .project-description {
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 0;
+            color: var(--accent-color);
+            margin-left: 200px;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+
         .photos {
             display: flex;
             flex-wrap: wrap;
@@ -231,6 +241,45 @@
             height: auto;
             border-radius: 8px;
             object-fit: cover;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 400px;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 12px;
+            margin-bottom: 60px;
+            margin-left: 200px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .project-image {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            display: block;
+            text-decoration: none;
+        }
+
+        .project-image-link .project-image:hover {
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .project-image-link.visited .project-image:hover {
+            opacity: 1;
+        }
+
+        .project-image-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-image-link::after {
+            display: none;
         }
 
         .footer {
@@ -351,6 +400,17 @@
             .section-description {
                 font-size: 14px;
                 margin-left: 0;
+            }
+            .project-description {
+                font-size: 14px;
+                margin-left: 0;
+            }
+            .project-image {
+                margin-left: 0;
+                margin-top: 6px;
+                margin-bottom: 45px;
+                max-width: 100%;
+                height: auto;
             }
             /* Add spacing between job groups */
             .job-entry+.section-description {
@@ -525,34 +585,46 @@
                 <span class="project-date">2024 - Now</span>
                 <span class="project-title"><a href="https://creators.snapchat.com/" target="_blank" class="external-link">Snapchat Creators</a></span>
             </div>
-            <div class="section-description">
+            <div class="project-description">
                 Helping creators grow and build communities<br>
                 Working on sharing, insights, moderation and notifications
             </div>
+            <a href="https://creators.snapchat.com/" target="_blank" class="project-image-link">
+                <img src="https://img.youtube.com/vi/PiKg9DTusHQ/maxresdefault.jpg" alt="Snapchat Creators video thumbnail" class="project-image">
+            </a>
             <div class="project-entry">
                 <span class="project-date">2020 - 2023</span>
                 <span class="project-title"><a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="external-link">Scan, Visual and Multimodal Search</a></span>
             </div>
-            <div class="section-description">
+            <div class="project-description">
                 Hybrid design + iOS role, later became lead designer<br>
                 Worked on GPT integration, web search, code scanning and fashion
             </div>
+            <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="project-image-link">
+                <img src="https://img.youtube.com/vi/lrR7nc_rHJE/maxresdefault.jpg" alt="Scan Visual and Multimodal Search video thumbnail" class="project-image">
+            </a>
             <div class="project-entry">
                 <span class="project-date">2021</span>
                 <span class="project-title"><a href="https://newsroom.snap.com/food-scan" target="_blank" class="external-link">Food Scan</a></span>
             </div>
-            <div class="section-description">
+            <div class="project-description">
                 AI-powered food recognition and recipe recommendations<br>
                 Led both product design and iOS development
             </div>
+            <a href="https://newsroom.snap.com/food-scan" target="_blank" class="project-image-link">
+                <img src="https://images.ctfassets.net/o1znirz7lzo4/2klNhNeZWrSWMHJMNz92jl/f054091269d4cf8199565ffc915a324b/Untitled_presentation__1_.jpg?fm=avif&q=40&h=800" alt="Food Scan presentation" class="project-image">
+            </a>
             <div class="project-entry">
                 <span class="project-date">2020</span>
                 <span class="project-title"><a href="https://eng.snap.com/meet-snaps-design-engineers" target="_blank" class="external-link">Snapchat Design Engineering</a></span>
             </div>
-            <div class="section-description">
+            <div class="project-description">
                 Rapid prototyping and experimentation<br>
                 Worked on 3D Bitmoji concepts in Unity and iOS
             </div>
+            <a href="https://eng.snap.com/meet-snaps-design-engineers" target="_blank" class="project-image-link">
+                <img src="https://images.ctfassets.net/7w2tf600vbko/16tOH0imttI0D4nn04bveD/ae6bea3fcc1281cbe222538d10cdd46f/JM1_8958__1_.jpg?fm=avif&q=40&h=650" alt="Snapchat Design Engineering" class="project-image">
+            </a>
         </div>
 
         <!-- Passion Projects Section -->
@@ -664,6 +736,40 @@
                 link.addEventListener('mouseleave', () => {
                     if (link.classList.contains('visited')) {
                         link.style.color = 'var(--text-color)';
+                    }
+                });
+            }
+        });
+
+        // Track visited image links
+        document.querySelectorAll('.project-image-link').forEach(link => {
+            link.addEventListener('click', () => {
+                localStorage.setItem('visited_' + link.href, 'true');
+                link.classList.add('visited');
+            });
+            
+            // Check if link was previously visited
+            if (localStorage.getItem('visited_' + link.href) === 'true') {
+                link.classList.add('visited');
+            }
+
+            // Function to check if we're on mobile
+            function isMobile() {
+                return window.innerWidth <= 768 || ('ontouchstart' in window);
+            }
+
+            // Only add hover effects on desktop (not mobile)
+            if (!isMobile()) {
+                // Handle hover state for images
+                link.addEventListener('mouseenter', () => {
+                    if (!link.classList.contains('visited')) {
+                        link.querySelector('.project-image').style.opacity = '0.9';
+                    }
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    if (!link.classList.contains('visited')) {
+                        link.querySelector('.project-image').style.opacity = '1';
                     }
                 });
             }
