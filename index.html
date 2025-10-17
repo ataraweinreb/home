@@ -219,6 +219,16 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
+        .section-subtitle {
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            margin-left: 0;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+
         .project-description {
             line-height: 1.8;
             font-size: 14px;
@@ -249,9 +259,58 @@
             height: 230px;
             object-fit: cover;
             border-radius: 4px;
-            margin-top: 12px;
-            margin-bottom: 60px;
+            margin-top: 8px;
+            margin-bottom: 40px;
             margin-left: 200px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-screenshots {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            margin-bottom: 40px;
+            margin-left: 200px;
+            max-width: 450px;
+            height: auto;
+        }
+
+        .project-screenshot {
+            flex: 1;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1284 / 2778;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .light-mode .project-screenshot {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-screenshot-link {
+            flex: 1;
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-screenshot-link::after {
+            display: none;
+        }
+
+        .for-fun-single-image {
+            width: 450px;
+            height: 280px;
+            object-fit: cover;
+            margin-top: 8px;
+            margin-bottom: 40px;
+            margin-left: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .light-mode .for-fun-single-image {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -401,15 +460,37 @@
                 font-size: 14px;
                 margin-left: 0;
             }
+            .section-subtitle {
+                font-size: 14px;
+                margin-left: 0;
+            }
             .project-description {
                 font-size: 14px;
                 margin-left: 0;
             }
             .project-image {
                 margin-left: 0;
-                margin-top: 6px;
-                margin-bottom: 45px;
+                margin-top: 4px;
+                margin-bottom: 30px;
                 max-width: 100%;
+                height: auto;
+            }
+            .project-screenshots {
+                margin-left: 0;
+                margin-top: 4px;
+                margin-bottom: 30px;
+                max-width: 100%;
+                gap: 8px;
+            }
+            .project-screenshot {
+                border-radius: 8px;
+            }
+            .for-fun-single-image {
+                margin-left: 0;
+                margin-top: 4px;
+                margin-bottom: 30px;
+                max-width: 100%;
+                width: 100%;
                 height: auto;
             }
             /* Add spacing between job groups */
@@ -504,7 +585,7 @@
 
 
     <!-- Blurb Section -->
-    <div class="header-row">
+    <!-- <div class="header-row">
         <div class="clock" id="clockDisplay"></div>
         <button
             class="theme-toggle"
@@ -524,26 +605,17 @@
                 <path d="M16 .5C7.4.5.5 7.4.5 16S7.4 31.5 16 31.5 31.5 24.6 31.5 16 24.6.5 16 .5zm0 28.1V3.4C23 3.4 28.6 9 28.6 16S23 28.6 16 28.6z" />
             </svg>
         </button>
-    </div>
+    </div> -->
 
     <div class="content">
         <div class="blob"></div>
         <div class="content blurb">
             <p>
                 <span class="intro">Hey, I'm Atara Weinreb.</span>
-                I build and design iOS apps both for a living and for fun. Currently,
-                I'm on my third team at Snapchat, developing tools to help UGC creators share their stories. Prior to
-                this, I was part of Snap's AI-powered camera team, Scan, and before that, the design prototyping team. I
-                thrive in collaborative environments and specialize in prototyping at all levels of fidelity—from pen
-                and paper, to Figma, to code.
+                I’m a creative engineer and designer who loves building with AI and turning ideas into something you can see and touch. I’m currently on my third team at Snapchat.
             </p>
             <p>
-                Creativity is at the heart of everything I do. I enjoy painting, making mosaics, and experimenting with
-                interior design. Generative AI fascinates me, and I use it daily, whether I'm coding or creating art.
-                Recently, with AI's help, I've been learning three.js, writing short fiction, and crafting art to
-                brighten up my NYC apartment. I also love musical theatre (I saw Wicked four times!), even though I
-                can't sing a note. I'm always up for chatting about tech, design, or any creative venture. If any of
-                this resonates with you, let's connect!
+                Outside of work, you’ll probably find me painting (mostly portraiture), wandering through Central Park, or at SoulCycle trying to clear my head. I also love Broadway and musical theatre (I’ve seen Wicked four times!), even though I can’t sing a note. If any of this resonates, please reach out! I love making new friends on the internet :)
             </p>
         </div>
 
@@ -590,7 +662,7 @@
                 Working on sharing, insights, moderation and notifications
             </div>
             <a href="https://creators.snapchat.com/" target="_blank" class="project-image-link">
-                <img src="https://img.youtube.com/vi/PiKg9DTusHQ/maxresdefault.jpg" alt="Snapchat Creators video thumbnail" class="project-image">
+                <img src="https://img.youtube.com/vi/PiKg9DTusHQ/maxresdefault.jpg" alt="Snapchat Creators video thumbnail" class="for-fun-single-image">
             </a>
             <div class="project-entry">
                 <span class="project-date">2020 - 2023</span>
@@ -601,7 +673,7 @@
                 Worked on GPT integration, web search, code scanning and fashion
             </div>
             <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="project-image-link">
-                <img src="https://img.youtube.com/vi/lrR7nc_rHJE/maxresdefault.jpg" alt="Scan Visual and Multimodal Search video thumbnail" class="project-image">
+                <img src="https://img.youtube.com/vi/lrR7nc_rHJE/maxresdefault.jpg" alt="Scan Visual and Multimodal Search video thumbnail" class="for-fun-single-image">
             </a>
             <div class="project-entry">
                 <span class="project-date">2021</span>
@@ -612,7 +684,7 @@
                 Led both product design and iOS development
             </div>
             <a href="https://newsroom.snap.com/food-scan" target="_blank" class="project-image-link">
-                <img src="https://images.ctfassets.net/o1znirz7lzo4/2klNhNeZWrSWMHJMNz92jl/f054091269d4cf8199565ffc915a324b/Untitled_presentation__1_.jpg?fm=avif&q=40&h=800" alt="Food Scan presentation" class="project-image">
+                <img src="https://images.ctfassets.net/o1znirz7lzo4/2klNhNeZWrSWMHJMNz92jl/f054091269d4cf8199565ffc915a324b/Untitled_presentation__1_.jpg?fm=avif&q=40&h=800" alt="Food Scan presentation" class="for-fun-single-image">
             </a>
             <div class="project-entry">
                 <span class="project-date">2020</span>
@@ -623,47 +695,97 @@
                 Worked on 3D Bitmoji concepts in Unity and iOS
             </div>
             <a href="https://eng.snap.com/meet-snaps-design-engineers" target="_blank" class="project-image-link">
-                <img src="https://images.ctfassets.net/7w2tf600vbko/16tOH0imttI0D4nn04bveD/ae6bea3fcc1281cbe222538d10cdd46f/JM1_8958__1_.jpg?fm=avif&q=40&h=650" alt="Snapchat Design Engineering" class="project-image">
+                <img src="https://images.ctfassets.net/7w2tf600vbko/16tOH0imttI0D4nn04bveD/ae6bea3fcc1281cbe222538d10cdd46f/JM1_8958__1_.jpg?fm=avif&q=40&h=650" alt="Snapchat Design Engineering" class="for-fun-single-image">
             </a>
         </div>
 
         <!-- Passion Projects Section -->
         <div class="section">
             <div class="section-title">For Fun</div>
-            <div class="project-entry">
-                <span class="project-date">2025</span>
-                <span class="project-title"><a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="external-link">Photo Swipe</a></span>
-            </div>
-            <div class="section-description">
-                Camera roll cleaner app
+            <div class="section-subtitle">
+                I'm a little obsessed with vibe coding, vibe designing, and seeing how far I can push what's possible with AI. Recently, I've built all sorts of apps just for fun with it. I move fast—I love the thrill of rapid shipping and bringing ideas to life. Everything you see below was made with my AI agents and design partners in crime :)
             </div>
             <div class="project-entry">
                 <span class="project-date">2025</span>
-                <span class="project-title"><a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="external-link">Tummy for Apple Watch</a></span>
+                <span class="project-title"><a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="external-link">Tummy</a></span>
             </div>
             <div class="section-description">
-                Symptom tracker for IBS, IBD, Crohn's, allergies
+                Wellness tracker for IBS/IBD management. iPhone and Apple Watch apps for logging meals, symptoms, and vitals with hydration reminders.
+            </div>
+            <div class="project-screenshots">
+                <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
+                    <img src="tummy-1.png" alt="Tummy for Apple Watch screenshot 1" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
+                    <img src="tummy-2.png" alt="Tummy for Apple Watch screenshot 2" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
+                    <img src="tummy-3.png" alt="Tummy for Apple Watch screenshot 3" class="project-screenshot">
+                </a>
+            </div>
+            <div class="project-entry">
+                <span class="project-date">2025</span>
+                <span class="project-title"><a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="external-link">Swiper</a></span>
+            </div>
+            <div class="section-description">
+                Swipe through memories, keep the good ones, and free up storage space.
+            </div>
+            <div class="project-screenshots">
+                <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
+                    <img src="photo-1.png" alt="Photo Swipe screenshot 1" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
+                    <img src="photo-2.png" alt="Photo Swipe screenshot 2" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
+                    <img src="photo-3.png" alt="Photo Swipe screenshot 3" class="project-screenshot">
+                </a>
+            </div>
+            <div class="project-entry">
+                <span class="project-date">2025</span>
+                <span class="project-title"><a href="#" target="_blank" class="external-link">Latex CV maker</a></span>
+            </div>
+            <div class="section-description">
+                The one and only LaTeX resume app on the App Store. Powered by the LaTeX.online API.
+            </div>
+            <div class="project-screenshots">
+                <a href="#" target="_blank" class="project-screenshot-link">
+                    <img src="latex-1.png" alt="Latex CV maker screenshot 1" class="project-screenshot">
+                </a>
+                <a href="#" target="_blank" class="project-screenshot-link">
+                    <img src="latex-2.png" alt="Latex CV maker screenshot 2" class="project-screenshot">
+                </a>
+                <a href="#" target="_blank" class="project-screenshot-link">
+                    <img src="latex-3.png" alt="Latex CV maker screenshot 3" class="project-screenshot">
+                </a>
             </div>
             <div class="project-entry">
                 <span class="project-date">2025</span>
                 <span class="project-title"><a href="https://apps.apple.com/us/app/no-wifi-games-watch/id6748415134" target="_blank" class="external-link">Mini Games for Apple Watch</a></span>
             </div>
             <div class="section-description">
-                8 satisfying games - tap, spin, swipe, and fidget
+                Collection of 8 satisfying mini-games designed for Apple Watch. Tap, spin, swipe, and fidget your way through quick, engaging games perfect for short breaks.
             </div>
-            <div class="project-entry">
-                <span class="project-date">2025</span>
-                <span class="project-title"><a href="https://www.dailyvibecode.com/" target="_blank" class="external-link">Daily Vibe Code</a></span>
-            </div>
-            <div class="section-description">
-                Prompt engineering dictionary for web development
-            </div>
+            <a href="https://apps.apple.com/us/app/no-wifi-games-watch/id6748415134" target="_blank" class="project-image-link">
+                <img src="watch-0.png" alt="Mini Games for Apple Watch" class="for-fun-single-image">
+            </a>
             <div class="project-entry">
                 <span class="project-date">2020</span>
                 <span class="project-title"><a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="external-link">Falling Foods</a></span>
             </div>
             <div class="section-description">
-                Face-tracking game using TrueDepth
+                Interactive face-tracking game where you catch falling food with your mouth using TrueDepth camera. Face tracking was cutting edge at the time, and this was a fun way to experiment with it.
+            </div>
+            <div class="project-screenshots">
+                <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
+                    <img src="falling-1.png" alt="Falling Foods screenshot 1" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
+                    <img src="falling-2.png" alt="Falling Foods screenshot 2" class="project-screenshot">
+                </a>
+                <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
+                    <img src="falling-3.png" alt="Falling Foods screenshot 3" class="project-screenshot">
+                </a>
             </div>
         </div>
 
@@ -700,10 +822,10 @@
 
     <script>
         // Toggle light/dark mode
-        const toggleButton = document.querySelector('.theme-toggle');
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-        });
+        // const toggleButton = document.querySelector('.theme-toggle');
+        // toggleButton.addEventListener('click', () => {
+        //     document.body.classList.toggle('light-mode');
+        // });
 
         // Track visited links
         document.querySelectorAll('.external-link').forEach(link => {
@@ -775,18 +897,18 @@
             }
         });
 
-        function updateClock() {
-            const clockDisplay = document.getElementById('clockDisplay');
-            const now = new Date();
-            const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            clockDisplay.textContent = formattedTime;
-        }
+        // function updateClock() {
+        //     const clockDisplay = document.getElementById('clockDisplay');
+        //     const now = new Date();
+        //     const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        //     clockDisplay.textContent = formattedTime;
+        // }
 
-        // Update the clock every second
-        setInterval(updateClock, 1000);
+        // // Update the clock every second
+        // setInterval(updateClock, 1000);
 
-        // Initialize the clock on page load
-        updateClock();
+        // // Initialize the clock on page load
+        // updateClock();
     </script>
 </body>
 
