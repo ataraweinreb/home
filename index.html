@@ -581,6 +581,155 @@
             color: var(--accent-color);
             font-size: 1em;
         }
+        
+        /* Skills Section */
+        .skills-container {
+            margin-top: 30px;
+            margin-left: 200px;
+        }
+        
+        .skills-description {
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+        
+        .skill-category {
+            margin-bottom: 10px;
+        }
+        
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .skill-category-label {
+            font-size: 14px;
+            color: var(--text-color);
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 4px;
+            line-height: 1.8;
+        }
+        
+        .skill-category-title {
+            font-size: 13px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            opacity: 0.9;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            align-items: center;
+            line-height: 1.8;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .skill-item:not(:last-child) .skill-name::after {
+            content: ",";
+            margin-right: 4px;
+            color: var(--accent-color);
+        }
+        
+        .skill-logo {
+            width: 14px;
+            height: 14px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+        
+        .light-mode .skill-logo {
+            filter: brightness(0);
+            opacity: 0.7;
+        }
+        
+        .cursor-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .light-mode .cursor-logo {
+            filter: brightness(0);
+        }
+        
+        .design-logo {
+            filter: none;
+            opacity: 1;
+        }
+        
+        .light-mode .design-logo {
+            filter: none;
+            opacity: 0.9;
+        }
+        
+        .skill-name {
+            font-size: 14px;
+            color: var(--accent-color);
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            line-height: 1.8;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .skill-text-item {
+            font-size: 14px;
+            color: var(--accent-color);
+            font-weight: 400;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-container {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .skills-description {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .skill-category {
+                margin-bottom: 10px;
+            }
+            
+            .skill-category-label {
+                font-size: 14px;
+            }
+            
+            .skills-grid {
+                gap: 0;
+            }
+            
+            .skill-logo {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .skill-name {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -651,6 +800,81 @@
             <div class="section-description">
                 iOS Engineer Intern, Provider team
             </div>
+            
+            <!-- Skills Section -->
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">Languages & Frameworks:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Swift</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SwiftUI</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">UIKit</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Objective-C</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">TypeScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">AI Tools:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Claude Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ChatGPT</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Windsurf</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">Design Tools:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Photoshop</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Blender</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Spline</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Illustrator</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Protopie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="section-gap"></div>
         <!-- Industry Projects Section -->
@@ -706,7 +930,7 @@
         <div class="section">
             <div class="section-title">For Fun</div>
             <div class="section-subtitle">
-                I'm a little obsessed with vibe coding, vibe designing, and seeing how far I can push what's possible with AI. Recently, I've built all sorts of apps just for fun with it. I move fast—I love the thrill of rapid shipping and bringing ideas to life. Everything you see below was made with my AI agents and design partners in crime :)
+                I've designed, built and launched a number of native SwiftUI apps for iPhone and Apple Watch. I use AI tools like Cursor and Claude Code to iterate and ship quickly.
             </div>
             <div class="project-entry">
                 <span class="project-date">2025</span>
@@ -804,16 +1028,12 @@
                 <span class="link-title"><a href="https://www.linkedin.com/in/ataraweinreb/" target="_blank" class="external-link">linkedin.com/in/ataraweinreb</a></span>
             </div>
             <div class="link-entry">
-                <span class="link-date">Instagram</span>
-                <span class="link-title"><a href="https://instagram.com/ataraweinreb" target="_blank" class="external-link">@ataraweinreb</a></span>
+                <span class="link-date">GitHub</span>
+                <span class="link-title"><a href="https://github.com/ataraweinreb" target="_blank" class="external-link">@ataraweinreb</a></span>
             </div>
             <div class="link-entry">
                 <span class="link-date">Codepen</span>
                 <span class="link-title"><a href="https://codepen.io/ataraweinreb/" target="_blank" class="external-link">@ataraweinreb</a></span>
-            </div>
-            <div class="link-entry">
-                <span class="link-date">GitHub</span>
-                <span class="link-title"><a href="https://github.com/ataraweinreb" target="_blank" class="external-link">@ataraweinreb</a></span>
             </div>
         </div>
 
