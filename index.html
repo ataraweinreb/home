@@ -89,6 +89,22 @@
             color: var(--text-color);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
+        
+        .blurb a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .blurb a:hover,
+        .blurb a:visited,
+        .blurb a:active {
+            color: var(--text-color);
+        }
+        
+        .blurb a.external-link::after {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
 
         .section {
             margin-bottom: 40px;
@@ -183,26 +199,30 @@
         @media (max-width: 768px) {
             .job-title a,
             .project-title a,
-            .link-title a {
+            .link-title a,
+            .blurb a {
                 transition: none;
                 pointer-events: auto;
             }
             
             .job-title a:hover,
             .project-title a:hover,
-            .link-title a:hover {
+            .link-title a:hover,
+            .blurb a:hover {
                 color: var(--text-color) !important;
             }
 
             .job-title a:visited,
             .project-title a:visited,
-            .link-title a:visited {
+            .link-title a:visited,
+            .blurb a:visited {
                 color: var(--text-color) !important;
             }
 
             .job-title a:active,
             .project-title a:active,
-            .link-title a:active {
+            .link-title a:active,
+            .blurb a:active {
                 color: var(--text-color) !important;
             }
         }
@@ -764,122 +784,16 @@
         <div class="content blurb">
             <p>
                 <span class="intro">Hey, I'm Atara Weinreb.</span>
-                I’m a creative engineer and designer exploring how AI can expand what we build and how we build it. I love turning ideas into things you can see, touch, and interact with.
+                I'm a creative engineer and designer exploring how AI can expand what we build and how we build it. I'm currently at <a href="https://www.snap.com" target="_blank" class="external-link">Snapchat</a>.
             </p>
             <p>
                 Outside of work, you’ll probably find me painting (mostly portraiture), wandering through Central Park, or at SoulCycle trying to clear my head. I also love Broadway and musical theatre (I’ve seen Wicked four times!), even though I can’t sing a note. If any of this resonates, please reach out! I love making new friends on the internet :)
             </p>
         </div>
 
-        <!-- Work Experience Section -->
-        <div class="section">
-            <div class="section-title">Experience</div>
-            <div class="job-entry">
-                <span class="job-date">2020 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Snap Inc.</a></span>
-            </div>
-            <div class="section-description">
-                <span class="job-role">iOS Engineer / Product Designer</span>
-                <ul class="job-teams">
-                    <li>Creator Growth, 2023 – Now</li>
-                    <li>Scan, 2020 – 2023</li>
-                    <li>Design Engineering, 2020</li>
-                </ul>
-            </div>
-            <div class="job-entry">
-                <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link">Datadog</a></span>
-            </div>
-            <div class="section-description">
-                Frontend Engineer Intern, APM team
-            </div>
-            <div class="job-entry">
-                <span class="job-date">2019</span>
-                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link">Teladoc</a></span>
-            </div>
-            <div class="section-description">
-                iOS Engineer Intern, Provider team
-            </div>
-            
-            <!-- Skills Section -->
-            <div class="skills-container">
-                <div class="skill-category">
-                    <div class="skills-grid">
-                        <div class="skill-category-label">Languages & Frameworks:</div>
-                        <div class="skill-item">
-                            <span class="skill-name">Swift</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SwiftUI</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">UIKit</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Objective-C</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">React</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">TypeScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">HTML</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">CSS</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <div class="skills-grid">
-                        <div class="skill-category-label">AI Tools:</div>
-                        <div class="skill-item">
-                            <span class="skill-name">Cursor</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Claude Code</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">ChatGPT</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Windsurf</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <div class="skills-grid">
-                        <div class="skill-category-label">Design Tools:</div>
-                        <div class="skill-item">
-                            <span class="skill-name">Figma</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Photoshop</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Blender</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Spline</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Illustrator</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Protopie</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section-gap"></div>
         <!-- Industry Projects Section -->
         <div class="section">
-            <div class="section-title">Features</div>
+            <div class="section-title">Work</div>
             <div class="project-entry">
                 <span class="project-date">2024 - Now</span>
                 <span class="project-title"><a href="https://creators.snapchat.com/" target="_blank" class="external-link">Snapchat Creators</a></span>
@@ -1013,6 +927,112 @@
                 <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
                     <img src="falling-3.png" alt="Falling Foods screenshot 3" class="project-screenshot">
                 </a>
+            </div>
+        </div>
+        <div class="section-gap"></div>
+        <!-- Work Experience Section -->
+        <div class="section">
+            <div class="section-title">Experience</div>
+            <div class="job-entry">
+                <span class="job-date">2020 – Now</span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Snap Inc.</a></span>
+            </div>
+            <div class="section-description">
+                <span class="job-role">iOS Engineer / Product Designer</span>
+                <ul class="job-teams">
+                    <li>Creator Growth, 2023 – Now</li>
+                    <li>Scan, 2020 – 2023</li>
+                    <li>Design Engineering, 2020</li>
+                </ul>
+            </div>
+            <div class="job-entry">
+                <span class="job-date">2020</span>
+                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link">Datadog</a></span>
+            </div>
+            <div class="section-description">
+                Frontend Engineer Intern, APM team
+            </div>
+            <div class="job-entry">
+                <span class="job-date">2019</span>
+                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link">Teladoc</a></span>
+            </div>
+            <div class="section-description">
+                iOS Engineer Intern, Provider team
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">Languages & Frameworks:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Swift</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SwiftUI</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">UIKit</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Objective-C</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">TypeScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">AI Tools:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Claude Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ChatGPT</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Windsurf</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skills-grid">
+                        <div class="skill-category-label">Design Tools:</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Photoshop</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Blender</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Spline</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Illustrator</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Protopie</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
