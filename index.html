@@ -95,7 +95,6 @@
             text-decoration: none;
         }
         
-        .blurb a:hover,
         .blurb a:visited,
         .blurb a:active {
             color: var(--text-color);
@@ -190,7 +189,14 @@
         @media (hover: hover) {
             .job-title a:hover,
             .project-title a:hover,
-            .link-title a:hover {
+            .link-title a:hover,
+            .blurb a:hover {
+                color: var(--accent-color);
+            }
+            .job-title a.external-link:hover::after,
+            .project-title a.external-link:hover::after,
+            .link-title a.external-link:hover::after,
+            .blurb a.external-link:hover::after {
                 color: var(--accent-color);
             }
         }
@@ -209,6 +215,13 @@
             .project-title a:hover,
             .link-title a:hover,
             .blurb a:hover {
+                color: var(--text-color) !important;
+            }
+
+            .job-title a.external-link:hover::after,
+            .project-title a.external-link:hover::after,
+            .link-title a.external-link:hover::after,
+            .blurb a.external-link:hover::after {
                 color: var(--text-color) !important;
             }
 
