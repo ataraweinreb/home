@@ -121,12 +121,21 @@
         }
 
         .job-entry,
-        .project-entry,
-        .link-entry {
+        .project-entry {
             display: flex;
             align-items: baseline;
             margin-bottom: 2px;
             /* Tighter spacing between title and description */
+        }
+
+        .link-entry {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 16px;
+            /* Match section block spacing (same as text-to-image gap) */
+        }
+        .link-entry:last-child {
+            margin-bottom: 0;
         }
 
         .job-date,
@@ -252,6 +261,12 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
 
+        /* Unify text-to-image spacing with Work section (8px) when description is directly followed by images */
+        .section-description:has(+ .project-image-link),
+        .section-description:has(+ .project-screenshots) {
+            margin-bottom: 0;
+        }
+
         .section-subtitle {
             line-height: 1.8;
             font-size: 14px;
@@ -292,7 +307,7 @@
             height: 230px;
             object-fit: cover;
             border-radius: 4px;
-            margin-top: 8px;
+            margin-top: 16px;
             margin-bottom: 40px;
             margin-left: 200px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -301,7 +316,7 @@
         .project-screenshots {
             display: flex;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: 16px;
             margin-bottom: 40px;
             margin-left: 200px;
             max-width: 450px;
@@ -335,12 +350,21 @@
         .for-fun-single-image {
             width: 450px;
             height: 280px;
+            aspect-ratio: 450 / 280;
             object-fit: cover;
-            margin-top: 8px;
+            margin-top: 16px;
             margin-bottom: 40px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             display: block;
+        }
+
+        /* Work section: all images same size/aspect ratio as watch games (450×280) */
+        .work-section .for-fun-single-image {
+            width: 450px;
+            height: 280px;
+            aspect-ratio: 450 / 280;
+            object-fit: cover;
         }
 
         .light-mode .for-fun-single-image {
@@ -454,6 +478,14 @@
                 margin-top: 0;
             }
 
+            /* Uniform spacing: 30px between blocks, 70px between sections, 16px from title to content */
+            .section {
+                margin-bottom: 70px;
+            }
+            .section-title {
+                margin-bottom: 16px;
+            }
+
             .photos img {
                 width: calc(50% - 10px);
             }
@@ -466,7 +498,7 @@
                 margin-bottom: 0;
             }
             .link-entry {
-                margin-bottom: 24px;
+                margin-bottom: 30px;
             }
             .job-entry+.section-description,
             .project-entry+.section-description,
@@ -495,6 +527,11 @@
                 font-size: 14px;
                 margin-left: 0;
             }
+            /* Match Work section: no extra margin when description is directly followed by images */
+            .section-description:has(+ .project-image-link),
+            .section-description:has(+ .project-screenshots) {
+                margin-bottom: 0;
+            }
             .section-subtitle {
                 font-size: 14px;
                 margin-left: 0;
@@ -507,14 +544,14 @@
                 margin-left: 0;
             }
             .project-image {
-                margin-top: 4px;
+                margin-top: 16px;
                 margin-bottom: 30px;
                 max-width: 100%;
                 height: auto;
             }
             .project-screenshots {
                 margin-left: 0;
-                margin-top: 4px;
+                margin-top: 16px;
                 margin-bottom: 30px;
                 max-width: 100%;
                 gap: 8px;
@@ -523,7 +560,7 @@
                 border-radius: 8px;
             }
             .for-fun-single-image {
-                margin-top: 4px;
+                margin-top: 16px;
                 margin-bottom: 30px;
                 max-width: 100%;
                 width: 100%;
@@ -535,12 +572,13 @@
             }
             .work-section .for-fun-single-image {
                 width: 100%;
-                height: 220px;
+                height: auto;
+                aspect-ratio: 450 / 280;
                 object-fit: cover;
             }
-            /* Add spacing between job groups */
+            /* Match block spacing used in Work, For Fun, Say Hi */
             .job-entry+.section-description {
-                margin-bottom: 20px;
+                margin-bottom: 30px;
             }
             .clock {
                 position: static;
@@ -561,7 +599,7 @@
                 height: 1.2em;
             }
             .section-gap {
-                height: 40px;
+                height: 0;
             }
         }
 
@@ -589,6 +627,14 @@
             .theme-toggle svg {
                 width: 1.5em;
                 height: 1.5em;
+            }
+            /* Work section: same aspect ratio as watch games on tablet */
+            .work-section .for-fun-single-image {
+                width: 100%;
+                max-width: 450px;
+                height: auto;
+                aspect-ratio: 450 / 280;
+                object-fit: cover;
             }
         }
 
@@ -876,14 +922,14 @@
         <div class="section">
             <div class="section-title">For Fun</div>
             <div class="section-subtitle">
-                I've designed, built and launched a number of native SwiftUI apps for iPhone and Apple Watch. I use AI tools like Cursor and Claude Code to iterate and ship quickly.
+                I've designed, built and launched a number of native SwiftUI apps for iPhone and Apple Watch. I use AI tools like Claude Code and Cursor to iterate and ship quickly.
             </div>
             <div class="project-entry">
                 <span class="project-date">2025</span>
                 <span class="project-title"><a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="external-link">Tummy</a></span>
             </div>
             <div class="section-description">
-                Wellness tracker for IBS/IBD management. iPhone and Apple Watch apps for logging meals, symptoms, and vitals with hydration reminders. Tech stack: SwiftUI, CoreData, RevenueCat, Cursor, ChatGPT (for all creative assets + branding).
+                Wellness tracker for IBS/IBD management. iPhone and Apple Watch apps for logging meals, symptoms, and vitals with hydration reminders
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
@@ -901,7 +947,7 @@
                 <span class="project-title"><a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="external-link">Swiper</a></span>
             </div>
             <div class="section-description">
-                Swipe through memories, keep the good ones, and free up storage space.
+                Swipe through memories, keep the good ones, and free up storage space
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
@@ -919,7 +965,7 @@
                 <span class="project-title"><a href="https://apps.apple.com/us/app/cv-maker-pdf-latex/id6749398563" target="_blank" class="external-link">LaTeX CV Maker</a></span>
             </div>
             <div class="section-description">
-                The one and only LaTeX resume app on the App Store. Powered by the LaTeX.online API.
+                The one and only LaTeX resume app on the App Store. Powered by the LaTeX.online API
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/cv-maker-pdf-latex/id6749398563" target="_blank" class="project-screenshot-link">
@@ -937,7 +983,7 @@
                 <span class="project-title"><a href="https://apps.apple.com/us/app/no-wifi-games-watch/id6748415134" target="_blank" class="external-link">Mini Games for Apple Watch</a></span>
             </div>
             <div class="section-description">
-                Collection of 8 satisfying mini-games designed for Apple Watch. Tap, spin, swipe, and fidget your way through quick, engaging games perfect for short breaks.
+                Collection of 8 satisfying mini-games designed for Apple Watch. Tap, spin, swipe, and fidget your way through quick, engaging games perfect for short breaks
             </div>
             <a href="https://apps.apple.com/us/app/no-wifi-games-watch/id6748415134" target="_blank" class="project-image-link">
                 <img src="watch-0.png" alt="Mini Games for Apple Watch" class="for-fun-single-image">
@@ -947,7 +993,7 @@
                 <span class="project-title"><a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="external-link">Falling Foods</a></span>
             </div>
             <div class="section-description">
-                Interactive face-tracking game where you catch falling food with your mouth using TrueDepth camera. Face tracking was cutting edge at the time, and this was a fun way to experiment with it.
+                Interactive face-tracking game where you catch falling food with your mouth using TrueDepth camera. Face tracking was cutting edge at the time, and this was a fun way to experiment with it. I hand-coded this before vibe coding was a thing :)
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
@@ -1028,16 +1074,19 @@
                     <div class="skills-grid">
                         <div class="skill-category-label">AI Tools:</div>
                         <div class="skill-item">
-                            <span class="skill-name">Cursor</span>
-                        </div>
-                        <div class="skill-item">
                             <span class="skill-name">Claude Code</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">ChatGPT</span>
+                            <span class="skill-name">Codex</span>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">Windsurf</span>
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AI Studio</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ChatGPT</span>
                         </div>
                     </div>
                 </div>
