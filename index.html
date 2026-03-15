@@ -93,6 +93,12 @@
         .blurb a {
             color: var(--text-color);
             text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-size: 0% 1px;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            padding-bottom: 1px;
+            transition: background-size 0.25s ease;
         }
         
         .blurb a:visited,
@@ -169,6 +175,12 @@
             display: inline-block;
             font-weight: 400;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-size: 0% 1px;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            padding-bottom: 1px;
+            transition: background-size 0.25s ease;
         }
 
         .job-title a.visited,
@@ -200,23 +212,14 @@
             .project-title a:hover,
             .link-title a:hover,
             .blurb a:hover {
-                color: var(--accent-color);
-            }
-            .job-title a.external-link:hover::after,
-            .project-title a.external-link:hover::after,
-            .link-title a.external-link:hover::after,
-            .blurb a.external-link:hover::after {
-                color: var(--accent-color);
+                background-size: 100% 1px;
             }
             .project-block.hover-active .project-image-link img,
             .project-block.hover-active .project-screenshot-link img {
                 transform: scale(1.02);
             }
             .project-block.hover-active .project-title a {
-                color: var(--accent-color) !important;
-            }
-            .project-block.hover-active .project-title a.external-link::after {
-                color: var(--accent-color) !important;
+                background-size: 100% 1px !important;
             }
         }
 
@@ -235,13 +238,7 @@
             .link-title a:hover,
             .blurb a:hover {
                 color: var(--text-color) !important;
-            }
-
-            .job-title a.external-link:hover::after,
-            .project-title a.external-link:hover::after,
-            .link-title a.external-link:hover::after,
-            .blurb a.external-link:hover::after {
-                color: var(--text-color) !important;
+                background-size: 0% 1px !important;
             }
 
             .job-title a:visited,
@@ -269,10 +266,7 @@
             }
             /* No title hover state from linked hover on mobile */
             .project-block.hover-active .project-title a {
-                color: var(--text-color) !important;
-            }
-            .project-block.hover-active .project-title a.external-link::after {
-                color: var(--text-color) !important;
+                background-size: 0% 1px !important;
             }
         }
 
@@ -418,7 +412,9 @@
             transition: transform 0.12s ease;
         }
 
-        .project-title a,
+        .project-title a {
+            transition: color 0.12s ease, background-size 0.25s ease;
+        }
         .project-title a.external-link::after {
             transition: color 0.12s ease;
         }
@@ -1209,39 +1205,26 @@
         //     document.body.classList.toggle('light-mode');
         // });
 
+        // Clear underline when link is clicked (e.g. new tab opens)
+        document.querySelectorAll('.job-title a, .project-title a, .link-title a, .blurb a').forEach(link => {
+            link.addEventListener('click', () => {
+                link.style.backgroundSize = '0% 1px';
+            });
+            link.addEventListener('mouseleave', () => {
+                link.style.backgroundSize = '';
+            });
+        });
+
         // Track visited links
         document.querySelectorAll('.external-link').forEach(link => {
             link.addEventListener('click', () => {
                 localStorage.setItem('visited_' + link.href, 'true');
                 link.classList.add('visited');
-                // Remove hover state
-                link.style.color = 'var(--text-color)';
             });
             
             // Check if link was previously visited
             if (localStorage.getItem('visited_' + link.href) === 'true') {
                 link.classList.add('visited');
-            }
-
-            // Function to check if we're on mobile
-            function isMobile() {
-                return window.innerWidth <= 768 || ('ontouchstart' in window);
-            }
-
-            // Only add hover effects on desktop (not mobile)
-            if (!isMobile()) {
-                // Handle hover state
-                link.addEventListener('mouseenter', () => {
-                    if (link.classList.contains('visited')) {
-                        link.style.color = 'var(--accent-color)';
-                    }
-                });
-
-                link.addEventListener('mouseleave', () => {
-                    if (link.classList.contains('visited')) {
-                        link.style.color = 'var(--text-color)';
-                    }
-                });
             }
         });
 
