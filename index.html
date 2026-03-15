@@ -603,34 +603,6 @@
             }
         }
 
-        /* Phone landscape: keep mobile font hierarchy so titles stay larger than subtitles */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .job-date,
-            .project-date,
-            .link-date {
-                font-size: 12px;
-            }
-            .job-title,
-            .project-title,
-            .link-title {
-                font-size: 16px;
-            }
-            .section-title {
-                font-size: 18px;
-            }
-            .section-description,
-            .project-description,
-            .section-subtitle {
-                font-size: 14px;
-            }
-            .job-entry,
-            .project-entry,
-            .link-entry {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
         /* iPad specific styles */
         @media (min-width: 768px) and (max-width: 1200px) {
             .header-row {
