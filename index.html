@@ -189,6 +189,23 @@
             color: var(--text-color);
         }
 
+        /* Company logo in job title (e.g. Experience section) */
+        .job-company-logo {
+            height: 1.6em;
+            width: auto;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .job-company-logo--snap {
+            height: 1.65em;
+        }
+        .job-company-logo--datadog {
+            height: 1.125em;
+        }
+        .job-company-logo--teladoc {
+            height: 1.3em;
+        }
+
         /* External link arrow */
         .external-link::after {
             content: "↗";
@@ -225,6 +242,19 @@
 
         /* Mobile styles - no hover effects */
         @media (max-width: 768px) {
+            .job-company-logo {
+                height: 1.4em;
+            }
+            .job-company-logo--snap {
+                height: 1.4em;
+            }
+            .job-company-logo--datadog {
+                height: 1.1em;
+            }
+            .job-company-logo--teladoc {
+                height: 1.2em;
+            }
+
             .job-title a,
             .project-title a,
             .link-title a,
@@ -1067,7 +1097,7 @@
             <div class="section-title">Experience</div>
             <div class="job-entry">
                 <span class="job-date">2020 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link">Snap Inc.</a></span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link job-title-logo"><img src="snapchat-logo.png" alt="Snap Inc." class="job-company-logo job-company-logo--snap"></a></span>
             </div>
             <div class="section-description">
                 <span class="job-role">iOS Engineer / Product Designer</span>
@@ -1079,14 +1109,14 @@
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link">Datadog</a></span>
+                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link job-title-logo"><img src="datadog-logo.png" alt="Datadog" class="job-company-logo job-company-logo--datadog"></a></span>
             </div>
             <div class="section-description">
                 Frontend Engineer Intern, APM team
             </div>
             <div class="job-entry">
                 <span class="job-date">2019</span>
-                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link">Teladoc</a></span>
+                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link job-title-logo"><img src="teladoc-logo.png" alt="Teladoc" class="job-company-logo job-company-logo--teladoc"></a></span>
             </div>
             <div class="section-description">
                 iOS Engineer Intern, Provider team
