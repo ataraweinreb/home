@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_outward&display=swap" rel="stylesheet">
     <!-- Start image fetches early so below-the-fold shots don’t wait on parser order -->
     <link rel="preload" as="image" href="creator-sub.webp">
     <link rel="preload" as="image" href="work-snapchat-creators.webp">
@@ -127,11 +128,6 @@
         .blurb a:active {
             color: var(--text-color);
         }
-        
-        .blurb a.external-link::after {
-            color: var(--text-color);
-            opacity: 0.8;
-        }
 
         .section {
             margin-bottom: 40px;
@@ -228,21 +224,33 @@
             height: 1.3em;
         }
 
-        /* External link arrow */
+        /* External link icon — Material Symbols Outlined arrow_outward (FILL 0, wght 400, opsz 24). */
         .external-link::after {
-            content: "↗";
-            margin-left: 6px;
-            font-size: 0.9em;
-            opacity: 0.8;
-            font-weight: 400;
-            font-family: Inter, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            content: "arrow_outward";
+            margin-left: 4px;
+            font-size: 1.05em;
+            line-height: 1;
+            color: currentColor;
+            font-weight: normal;
+            font-style: normal;
+            font-family: 'Material Symbols Outlined';
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+            font-feature-settings: 'liga';
+            -webkit-font-feature-settings: 'liga';
+            letter-spacing: normal;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: -0.2em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Hide arrows on non-Apple devices */
-        @supports not (-webkit-appearance: none) {
-            .external-link::after {
-                display: none;
-            }
+        .external-link:has(.job-company-logo)::after {
+            vertical-align: middle;
         }
 
         /* Desktop hover effects */
@@ -1119,7 +1127,7 @@
             <div class="section-title">Experience</div>
             <div class="job-entry">
                 <span class="job-date">2020 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link job-title-logo"><img src="snapchat-logo.webp" alt="Snap Inc." class="job-company-logo job-company-logo--snap"></a></span>
+                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link"><img src="snapchat-logo.webp" alt="Snap Inc." class="job-company-logo job-company-logo--snap"></a></span>
             </div>
             <div class="section-description">
                 <span class="job-role">iOS Engineer / Product Designer</span>
@@ -1131,14 +1139,14 @@
             </div>
             <div class="job-entry">
                 <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link job-title-logo"><img src="datadog-logo.webp" alt="Datadog" class="job-company-logo job-company-logo--datadog"></a></span>
+                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link"><img src="datadog-logo.webp" alt="Datadog" class="job-company-logo job-company-logo--datadog"></a></span>
             </div>
             <div class="section-description">
                 Frontend Engineer Intern, APM team
             </div>
             <div class="job-entry">
                 <span class="job-date">2019</span>
-                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link job-title-logo"><img src="teladoc-logo.webp" alt="Teladoc" class="job-company-logo job-company-logo--teladoc"></a></span>
+                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link"><img src="teladoc-logo.webp" alt="Teladoc" class="job-company-logo job-company-logo--teladoc"></a></span>
             </div>
             <div class="section-description">
                 iOS Engineer Intern, Provider team
