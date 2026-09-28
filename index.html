@@ -24,8 +24,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Atara Weinreb">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://ataraweinreb.com/website-preview.png">
-    <meta property="og:image:secure_url" content="https://ataraweinreb.com/website-preview.png">
+    <meta property="og:image" content="https://ataraweinreb.com/site-preview.png">
+    <meta property="og:image:secure_url" content="https://ataraweinreb.com/site-preview.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -34,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Atara Weinreb — Creative engineer & designer">
     <meta name="twitter:description" content="Creative technologist at Snapchat building AI-powered experiences. I love shipping polished ideas fast, from creator tools used by millions to weird little SwiftUI experiments.">
-    <meta name="twitter:image" content="https://ataraweinreb.com/website-preview.png">
+    <meta name="twitter:image" content="https://ataraweinreb.com/site-preview.png">
     <meta name="twitter:image:alt" content="ATARA wordmark — minimalist linear typography on black">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -43,28 +43,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_outward&display=swap" rel="stylesheet">
     <!-- Start image fetches early so below-the-fold shots don’t wait on parser order -->
-    <link rel="preload" as="image" href="creator-sub.webp">
-    <link rel="preload" as="image" href="work-snapchat-creators.webp">
-    <link rel="preload" as="image" href="work-scan-multimodal.webp">
-    <link rel="preload" as="image" href="work-food-scan.webp">
-    <link rel="preload" as="image" href="work-design-engineering.webp">
-    <link rel="preload" as="image" href="tummy-1.webp">
-    <link rel="preload" as="image" href="tummy-2.webp">
-    <link rel="preload" as="image" href="tummy-3.webp">
-    <link rel="preload" as="image" href="photo-1.webp">
-    <link rel="preload" as="image" href="photo-2.webp">
-    <link rel="preload" as="image" href="photo-3.webp">
-    <link rel="preload" as="image" href="latex-1.webp">
-    <link rel="preload" as="image" href="latex-2.webp">
-    <link rel="preload" as="image" href="latex-3.webp">
-    <link rel="preload" as="image" href="watch-0.webp">
-    <link rel="preload" as="image" href="falling-1.webp">
-    <link rel="preload" as="image" href="falling-2.webp">
-    <link rel="preload" as="image" href="falling-3.webp">
-    <link rel="preload" as="image" href="a16z-logo.webp">
-    <link rel="preload" as="image" href="snapchat-logo.webp">
-    <link rel="preload" as="image" href="datadog-logo.webp">
-    <link rel="preload" as="image" href="teladoc-logo.webp">
+    <link rel="preload" as="image" href="atara-portrait.webp" type="image/webp">
+    <link rel="preload" as="image" href="google-wordmark.webp" type="image/webp">
     <style>
         /* General Styling */
         /* Apply smooth scrolling to both html and body */
@@ -135,6 +115,119 @@
             color: var(--text-color);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
+
+        .blurb .intro-name {
+            white-space: nowrap;
+        }
+
+        .intro-photo-button {
+            position: relative;
+            display: inline-block;
+            padding: 0;
+            margin: 0 0.08em;
+            border: none;
+            background: none;
+            font: inherit;
+            line-height: 0;
+            vertical-align: -0.36em;
+            cursor: pointer;
+            border-radius: 50%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .intro-photo-button:focus {
+            outline: none;
+        }
+        .intro-photo-button:focus-visible {
+            outline: 1px solid rgba(240, 240, 240, 0.55);
+            outline-offset: 3px;
+        }
+
+        .intro-photo {
+            height: 1.45em;
+            width: 1.45em;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            transform-origin: center;
+            transition: transform 0.28s ease;
+        }
+        .intro-photo-button:hover .intro-photo {
+            transform: scale(1.06);
+        }
+
+        .portrait-bubble {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 8px);
+            z-index: 2;
+            padding: 6px 10px 7px;
+            border-radius: 12px;
+            background: #f0f0f0;
+            color: #111;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateX(-50%) scale(0.4);
+            transform-origin: center bottom;
+        }
+        .portrait-bubble::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #f0f0f0;
+            border-bottom: 0;
+        }
+        .portrait-bubble.is-showing {
+            animation: bubble-pop 1.7s ease forwards;
+        }
+        @keyframes bubble-pop {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(6px) scale(0.4);
+            }
+            14% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1.08);
+            }
+            24% {
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            72% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-8px) scale(0.96);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .intro-photo,
+            .blurb-wordmark {
+                transition: none;
+            }
+            .intro-photo-button:hover .intro-photo,
+            .blurb-wordmark-button:hover .blurb-wordmark {
+                transform: none;
+            }
+            .portrait-bubble.is-showing {
+                animation: none;
+                opacity: 1;
+                transform: translateX(-50%);
+            }
+        }
         
         .blurb a {
             color: var(--text-color);
@@ -150,6 +243,122 @@
         .blurb a:visited,
         .blurb a:active {
             color: var(--text-color);
+        }
+
+        .blurb-wordmark-button {
+            position: relative;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            font: inherit;
+            line-height: 0;
+            vertical-align: -0.233em;
+            cursor: pointer;
+            border-radius: 2px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .blurb-wordmark-button:focus {
+            outline: none;
+        }
+        .blurb-wordmark-button:focus-visible {
+            outline: 1px solid rgba(240, 240, 240, 0.55);
+            outline-offset: 3px;
+        }
+
+        .blurb-wordmark {
+            height: 1.05em;
+            width: auto;
+            display: block;
+            pointer-events: none;
+            transform-origin: center;
+            transition: transform 0.28s ease;
+        }
+        .blurb-wordmark-button:hover .blurb-wordmark {
+            transform: translateY(-1px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .google-kite,
+            .google-rocket,
+            .rocket-flame,
+            .google-bit {
+                animation: none;
+            }
+        }
+
+        .google-kite {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% - 6px);
+            width: 40px;
+            height: 72px;
+            margin-left: -20px;
+            pointer-events: none;
+            transform-origin: 50% 88%;
+            animation: kite-fly 3.4s ease-in-out forwards;
+        }
+        .google-kite svg,
+        .google-rocket svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+        @keyframes kite-fly {
+            0% { opacity: 0; transform: translateY(8px) rotate(-8deg); }
+            10% { opacity: 1; transform: translateY(0) rotate(7deg); }
+            36% { opacity: 1; transform: translate(-12px, -16px) rotate(-8deg); }
+            62% { opacity: 1; transform: translate(10px, -34px) rotate(6deg); }
+            82% { opacity: 1; transform: translate(-4px, -48px) rotate(-4deg); }
+            100% { opacity: 0; transform: translate(8px, -64px) rotate(3deg); }
+        }
+
+        .google-rocket {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 2px);
+            width: 30px;
+            height: 54px;
+            margin-left: -15px;
+            pointer-events: none;
+            animation: rocket-launch 3.2s cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+        }
+        .rocket-flame {
+            transform-box: fill-box;
+            transform-origin: center top;
+            animation: flame-flicker 0.14s ease-in-out infinite alternate;
+        }
+        @keyframes flame-flicker {
+            from { transform: scaleY(0.8); }
+            to { transform: scaleY(1.15); }
+        }
+        @keyframes rocket-launch {
+            0% { opacity: 0; transform: translateY(8px) scale(0.86); }
+            12% { opacity: 1; transform: translateY(0) scale(1); }
+            78% { opacity: 1; transform: translate(-4px, -62px); }
+            100% { opacity: 0; transform: translate(6px, -90px); }
+        }
+
+        .google-bit {
+            position: absolute;
+            left: 50%;
+            bottom: 70%;
+            width: var(--w);
+            height: var(--h);
+            margin-left: calc(var(--w) * -0.5);
+            background: var(--c);
+            border-radius: var(--r);
+            pointer-events: none;
+            animation: confetti-burst 1.25s ease-out forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes confetti-burst {
+            0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--spin)); }
         }
 
         .section {
@@ -173,6 +382,10 @@
             align-items: baseline;
             margin-bottom: 2px;
             /* Tighter spacing between title and description */
+        }
+
+        .job-entry {
+            align-items: center;
         }
 
         .link-entry {
@@ -230,24 +443,139 @@
             color: var(--text-color);
         }
 
-        /* Company logo in job title (e.g. Experience section) */
-        .job-company-logo {
-            height: 1.6em;
+        /* Experience: date column lines up with the wordmark.
+           The logo sits above that wordmark in the right column. */
+        .experience > .section-title {
+            margin-bottom: 26px;
+        }
+        .experience .job {
+            display: grid;
+            grid-template-columns: 180px minmax(0, 1fr);
+            column-gap: 20px;
+            row-gap: 8px;
+            margin-bottom: 34px;
+            align-items: center;
+        }
+        .experience .job:last-of-type {
+            margin-bottom: 8px;
+        }
+        .experience .job-logo-link {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            width: fit-content;
+            margin: 0;
+            line-height: 0;
+        }
+        .experience .job-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+        }
+        .experience .job-entry {
+            display: grid;
+            grid-column: 1 / -1;
+            grid-row: 1;
+            grid-template-columns: subgrid;
+            align-items: start;
+        }
+        .experience .job-date {
+            grid-column: 1;
+            grid-row: 2;
             width: auto;
-            vertical-align: middle;
-            display: inline-block;
+            align-self: start;
+            line-height: 1;
+        }
+        .experience .job-title {
+            grid-column: 2;
+            grid-row: 2;
+            margin: 0;
+            align-self: center;
+            line-height: 0;
+        }
+        .experience .job-title a:has(.job-company-logo) {
+            display: flex;
+            width: fit-content;
+            align-items: center;
+            line-height: 0;
+            padding: 0;
+            cursor: pointer;
+            background-image: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+        .experience .job-title a:has(.job-company-logo):hover,
+        .experience .job-title a:has(.job-company-logo):focus,
+        .experience .job-title a:has(.job-company-logo):focus-visible,
+        .experience .job-title a:has(.job-company-logo):active {
+            background-image: none;
+            background-color: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        .job-company-logo {
+            height: 24px;
+            width: auto;
+            display: block;
+            cursor: default;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .experience .job-title a::after {
+            content: none;
         }
         .job-company-logo--a16z {
-            height: 1.3em;
+            height: 26px;
         }
         .job-company-logo--snap {
-            height: 1.6em;
+            height: 22px;
+        }
+        .experience .job--wordmark .job-date,
+        .experience .job--wordmark .job-title {
+            grid-row: 1;
+        }
+        .experience .job--wordmark .section-description.job-detail {
+            grid-row: 2;
         }
         .job-company-logo--datadog {
-            height: 1.125em;
+            height: 25px;
         }
         .job-company-logo--teladoc {
-            height: 1.3em;
+            height: 26px;
+        }
+        .job-company-logo--google {
+            height: 30px;
+        }
+        .job-company-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .experience .section-description.job-detail {
+            grid-column: 2;
+            grid-row: 3;
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            line-height: 1.6;
+        }
+        .experience .job-detail .job-teams {
+            margin-top: 2px;
+        }
+        .job-company-name {
+            background-image: linear-gradient(currentColor, currentColor);
+            background-size: 0% 1px;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            padding-bottom: 1px;
+            transition: background-size 0.25s ease;
         }
 
         /* External link icon — Material Symbols Outlined arrow_outward (FILL 0, wght 400, opsz 24). */
@@ -274,15 +602,11 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Nudge next to text only — company logo links use neutral alignment below */
-        .external-link:not(:has(.job-company-logo))::after {
+        /* Nudge the arrow down so it sits on the text baseline */
+        .external-link::after {
             position: relative;
             top: 0.302em;
             vertical-align: 0.05em;
-        }
-
-        .external-link:has(.job-company-logo)::after {
-            vertical-align: middle;
         }
 
         /* Desktop hover effects */
@@ -300,26 +624,13 @@
             .project-block.hover-active .project-title a {
                 background-size: 100% 1px !important;
             }
+            .job-title a:hover .job-company-name {
+                background-size: 100% 1px;
+            }
         }
 
         /* Mobile styles - no hover effects */
         @media (max-width: 768px) {
-            .job-company-logo {
-                height: 1.4em;
-            }
-            .job-company-logo--a16z {
-                height: 1.15em;
-            }
-            .job-company-logo--snap {
-                height: 1.4em;
-            }
-            .job-company-logo--datadog {
-                height: 1.1em;
-            }
-            .job-company-logo--teladoc {
-                height: 1.2em;
-            }
-
             .job-title a,
             .project-title a,
             .link-title a,
@@ -334,6 +645,9 @@
             .blurb a:hover {
                 color: var(--text-color) !important;
                 background-size: 0% 1px !important;
+            }
+            .job-title a:hover .job-company-name {
+                background-size: 0% 1px;
             }
 
             .job-title a:visited,
@@ -525,6 +839,63 @@
             display: none;
         }
 
+
+        .portrait-particles {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 48px;
+            margin-bottom: 8px;
+        }
+        .portrait-particles canvas {
+            display: block;
+            max-width: 100%;
+        }
+        #changeColorButton {
+            display: none;
+            position: relative;
+            z-index: 1;
+            margin-top: 14px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            background:
+                linear-gradient(var(--background-color), var(--background-color)) padding-box,
+                linear-gradient(90deg, #ff5a7a, #ffe14a, #7dff6a, #4d9fff, #c77dff) border-box;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            transform-origin: center;
+            transition: transform 0.28s ease;
+        }
+        #changeColorButton:hover {
+            transform: translateY(-2px) scale(1.06);
+        }
+        #changeColorButton:focus {
+            outline: none;
+        }
+        #changeColorButton:focus-visible {
+            outline: 1px solid rgba(240, 240, 240, 0.55);
+            outline-offset: 4px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #changeColorButton {
+                transition: none;
+            }
+            #changeColorButton:hover {
+                transform: none;
+            }
+        }
+        @media (max-width: 1199px) {
+            .portrait-particles {
+                display: none;
+            }
+        }
+
         .footer {
             margin-top: 40px;
             text-align: left;
@@ -534,6 +905,10 @@
             padding-top: 10px;
             line-height: 1.5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        }
+
+        .footer-marks {
+            margin-left: 0.5em;
         }
 
         .clock {
@@ -589,6 +964,12 @@
             transform: rotate(180deg);
         }
 
+        @media (max-width: 340px) {
+            .blurb .intro {
+                font-size: 24px;
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 40px;
@@ -601,6 +982,12 @@
             .blurb {
                 font-size: 18px;
                 margin-top: 0;
+            }
+
+            .footer-marks {
+                display: block;
+                margin-left: 0;
+                margin-top: 4px;
             }
 
             /* Uniform spacing: 30px between blocks, 70px between sections, 16px from title to content */
@@ -655,6 +1042,28 @@
             .section-description {
                 font-size: 14px;
                 margin-left: 0;
+            }
+            .experience .job {
+                display: block;
+                margin-bottom: 28px;
+                align-items: flex-start;
+            }
+            .experience .job-entry {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .experience .job-date {
+                margin-bottom: 10px;
+            }
+            .experience .job-logo-link,
+            .experience .job-date,
+            .experience .job-title,
+            .experience .section-description.job-detail {
+                grid-column: auto;
+                grid-row: auto;
+                margin-left: 0;
+                align-self: flex-start;
             }
             /* Match Work section: no extra margin when description is directly followed by images */
             .section-description:has(+ .project-image-link),
@@ -975,16 +1384,16 @@
             </svg>
         </button>
     </div> -->
-
+    
     <div class="content">
         <div class="blob"></div>
         <div class="content blurb">
             <p>
-                <span class="intro">Hey, I'm Atara Weinreb.</span>
-                I'm a creative engineer and designer exploring how AI can expand what we build and how we build it. I'm currently at <a href="https://www.snap.com" target="_blank" class="external-link">Snapchat</a>.
+                <span class="intro">Hey, I'm <span class="intro-name">Atara <button type="button" class="intro-photo-button" aria-label="Say hello"><img src="atara-portrait.webp" alt="" class="intro-photo"><span class="portrait-bubble" aria-hidden="true"></span></button> Weinreb.</span></span>
+                I'm a creative designer and engineer exploring how AI can expand what we build and how we build it. I'm currently at <button type="button" class="blurb-wordmark-button" aria-label="Google"><img src="google-wordmark.webp" alt="" class="blurb-wordmark"></button>.
             </p>
             <p>
-                Outside of work, you’ll probably find me painting (mostly portraiture), wandering through Central Park, or at SoulCycle trying to clear my head. I also love Broadway and musical theatre (I’ve seen Wicked four times!), even though I can’t sing a note. If any of this resonates, please reach out! I love making new friends on the internet :)
+                Outside of work, you’ll probably find me painting (mostly portraiture), wandering through Central Park, or at SoulCycle trying to clear my head. I also love Broadway and musical theatre (I’ve seen Wicked four times!), even though I can’t carry a tune. If any of this resonates, please reach out! I love making new friends on the internet :)
             </p>
         </div>
 
@@ -1000,7 +1409,7 @@
                 Shipped creator posting and subscriber viewing flows from concept to launch
             </div>
             <a href="https://newsroom.snap.com/snapchat-launches-creator-subscriptions" target="_blank" class="project-image-link">
-                <img src="creator-sub.webp" alt="Creator Subscriptions" class="for-fun-single-image">
+                <img src="creator-subscriptions.webp" alt="Creator Subscriptions" class="for-fun-single-image">
             </a>
             </div>
             <div class="project-block">
@@ -1013,7 +1422,7 @@
                 Worked on sharing, insights, moderation and notifications
             </div>
             <a href="https://creators.snapchat.com/" target="_blank" class="project-image-link">
-                <img src="work-snapchat-creators.webp" alt="Snapchat Creators video thumbnail" class="for-fun-single-image">
+                <img src="snapchat-creators.webp" alt="Snapchat Creators video thumbnail" class="for-fun-single-image">
             </a>
             </div>
             <div class="project-block">
@@ -1026,7 +1435,7 @@
                 Worked on GPT integration, web search, code scanning and fashion
             </div>
             <a href="https://www.theverge.com/2021/8/26/22642017/snapchat-scan-feature-ar-camera-visual-search" target="_blank" class="project-image-link">
-                <img src="work-scan-multimodal.webp" alt="Scan Visual and Multimodal Search video thumbnail" class="for-fun-single-image">
+                <img src="scan-visual-search.webp" alt="Scan Visual and Multimodal Search video thumbnail" class="for-fun-single-image">
             </a>
             </div>
             <div class="project-block">
@@ -1039,7 +1448,7 @@
                 Led both product design and iOS development
             </div>
             <a href="https://newsroom.snap.com/food-scan" target="_blank" class="project-image-link">
-                <img src="work-food-scan.webp" alt="Food Scan presentation" class="for-fun-single-image">
+                <img src="food-scan.webp" alt="Food Scan presentation" class="for-fun-single-image">
             </a>
             </div>
             <div class="project-block">
@@ -1052,7 +1461,7 @@
                 Worked on 3D Bitmoji concepts in Unity and iOS
             </div>
             <a href="https://eng.snap.com/meet-snaps-design-engineers" target="_blank" class="project-image-link">
-                <img src="work-design-engineering.webp" alt="Snapchat Design Engineering" class="for-fun-single-image">
+                <img src="snapchat-design-engineering.webp" alt="Snapchat Design Engineering" class="for-fun-single-image">
             </a>
             </div>
         </div>
@@ -1073,13 +1482,13 @@
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
-                    <img src="tummy-1.webp" alt="Tummy for Apple Watch screenshot 1" class="project-screenshot">
+                    <img src="tummy-screenshot-1.webp" alt="Tummy for Apple Watch screenshot 1" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
-                    <img src="tummy-2.webp" alt="Tummy for Apple Watch screenshot 2" class="project-screenshot">
+                    <img src="tummy-screenshot-2.webp" alt="Tummy for Apple Watch screenshot 2" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/symptom-tracker-tummy/id6748500749" target="_blank" class="project-screenshot-link">
-                    <img src="tummy-3.webp" alt="Tummy for Apple Watch screenshot 3" class="project-screenshot">
+                    <img src="tummy-screenshot-3.webp" alt="Tummy for Apple Watch screenshot 3" class="project-screenshot">
                 </a>
             </div>
             </div>
@@ -1093,13 +1502,13 @@
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
-                    <img src="photo-1.webp" alt="Photo Swipe screenshot 1" class="project-screenshot">
+                    <img src="swiper-screenshot-1.webp" alt="Photo Swipe screenshot 1" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
-                    <img src="photo-2.webp" alt="Photo Swipe screenshot 2" class="project-screenshot">
+                    <img src="swiper-screenshot-2.webp" alt="Photo Swipe screenshot 2" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/swipe-to-clean/id6747598393" target="_blank" class="project-screenshot-link">
-                    <img src="photo-3.webp" alt="Photo Swipe screenshot 3" class="project-screenshot">
+                    <img src="swiper-screenshot-3.webp" alt="Photo Swipe screenshot 3" class="project-screenshot">
                 </a>
             </div>
             </div>
@@ -1113,13 +1522,13 @@
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/cv-maker-pdf-latex/id6749398563" target="_blank" class="project-screenshot-link">
-                    <img src="latex-1.webp" alt="Latex CV maker screenshot 1" class="project-screenshot">
+                    <img src="latex-cv-screenshot-1.webp" alt="Latex CV maker screenshot 1" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/cv-maker-pdf-latex/id6749398563" target="_blank" class="project-screenshot-link">
-                    <img src="latex-2.webp" alt="Latex CV maker screenshot 2" class="project-screenshot">
+                    <img src="latex-cv-screenshot-2.webp" alt="Latex CV maker screenshot 2" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/cv-maker-pdf-latex/id6749398563" target="_blank" class="project-screenshot-link">
-                    <img src="latex-3.webp" alt="Latex CV maker screenshot 3" class="project-screenshot">
+                    <img src="latex-cv-screenshot-3.webp" alt="Latex CV maker screenshot 3" class="project-screenshot">
                 </a>
             </div>
             </div>
@@ -1132,7 +1541,7 @@
                 Collection of 8 satisfying mini-games designed for Apple Watch. Tap, spin, swipe, and fidget your way through quick, engaging games perfect for short breaks
             </div>
             <a href="https://apps.apple.com/us/app/no-wifi-games-watch/id6748415134" target="_blank" class="project-image-link">
-                <img src="watch-0.webp" alt="Mini Games for Apple Watch" class="for-fun-single-image">
+                <img src="apple-watch-mini-games.webp" alt="Mini Games for Apple Watch" class="for-fun-single-image">
             </a>
             </div>
             <div class="project-block">
@@ -1145,56 +1554,73 @@
             </div>
             <div class="project-screenshots">
                 <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
-                    <img src="falling-1.webp" alt="Falling Foods screenshot 1" class="project-screenshot">
+                    <img src="falling-foods-screenshot-1.webp" alt="Falling Foods screenshot 1" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
-                    <img src="falling-2.webp" alt="Falling Foods screenshot 2" class="project-screenshot">
+                    <img src="falling-foods-screenshot-2.webp" alt="Falling Foods screenshot 2" class="project-screenshot">
                 </a>
                 <a href="https://apps.apple.com/us/app/falling-foods/id1495611033" target="_blank" class="project-screenshot-link">
-                    <img src="falling-3.webp" alt="Falling Foods screenshot 3" class="project-screenshot">
+                    <img src="falling-foods-screenshot-3.webp" alt="Falling Foods screenshot 3" class="project-screenshot">
                 </a>
             </div>
             </div>
         </div>
         <div class="section-gap"></div>
         <!-- Work Experience Section -->
-        <div class="section">
+        <div class="section experience">
             <div class="section-title">Experience</div>
-            <div class="job-entry">
-                <span class="job-date">2026 – Now</span>
-                <span class="job-title"><a href="https://a16z.com" target="_blank" rel="noopener noreferrer" class="external-link"><img src="a16z-logo.webp" alt="a16z" class="job-company-logo job-company-logo--a16z"></a></span>
+            <div class="job job--wordmark">
+                <div class="job-entry">
+                    <span class="job-date">2026 – Now</span>
+                    <span class="job-title"><img src="google-wordmark.webp" alt="Google" class="job-company-logo job-company-logo--google"></span>
+                </div>
+                <div class="section-description job-detail">
+                    UX Design Engineer, Search iOS team
+                </div>
             </div>
-            <div class="section-description">
-                Design Engineer Fellow, inaugural cohort
+            <div class="job job--wordmark">
+                <div class="job-entry">
+                    <span class="job-date">2026</span>
+                    <span class="job-title"><img src="a16z-wordmark.webp" alt="a16z" class="job-company-logo job-company-logo--a16z"></span>
+                </div>
+                <div class="section-description job-detail">
+                    Design Engineer Fellow, inaugural cohort
+                </div>
             </div>
-            <div class="job-entry">
-                <span class="job-date">2020 – Now</span>
-                <span class="job-title"><a href="https://www.snap.com" target="_blank" class="external-link"><img src="snapchat-logo.webp" alt="Snap Inc." class="job-company-logo job-company-logo--snap"></a></span>
+            <div class="job job--wordmark">
+                <div class="job-entry">
+                    <span class="job-date">2020 – 2026</span>
+                    <span class="job-title"><img src="snapchat-wordmark.webp" alt="Snapchat" class="job-company-logo job-company-logo--snap"></span>
+                </div>
+                <div class="section-description job-detail">
+                    <span class="job-role">iOS Engineer / Product Designer</span>
+                    <ul class="job-teams">
+                        <li>Creator Growth, 2023 – Now</li>
+                        <li>Scan, 2020 – 2023</li>
+                        <li>Design Engineering, 2020</li>
+                    </ul>
+                </div>
             </div>
-            <div class="section-description">
-                <span class="job-role">iOS Engineer / Product Designer</span>
-                <ul class="job-teams">
-                    <li>Creator Growth, 2023 – Now</li>
-                    <li>Scan, 2020 – 2023</li>
-                    <li>Design Engineering, 2020</li>
-                </ul>
+            <div class="job job--wordmark">
+                <div class="job-entry">
+                    <span class="job-date">2020</span>
+                    <span class="job-title"><img src="datadog-wordmark.webp" alt="Datadog" class="job-company-logo job-company-logo--datadog"></span>
+                </div>
+                <div class="section-description job-detail">
+                    Frontend Engineer Intern, APM team
+                </div>
             </div>
-            <div class="job-entry">
-                <span class="job-date">2020</span>
-                <span class="job-title"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer" class="external-link"><img src="datadog-logo.webp" alt="Datadog" class="job-company-logo job-company-logo--datadog"></a></span>
-            </div>
-            <div class="section-description">
-                Frontend Engineer Intern, APM team
-            </div>
-            <div class="job-entry">
-                <span class="job-date">2019</span>
-                <span class="job-title"><a href="https://www.teladochealth.com" target="_blank" class="external-link"><img src="teladoc-logo.webp" alt="Teladoc" class="job-company-logo job-company-logo--teladoc"></a></span>
-            </div>
-            <div class="section-description">
-                iOS Engineer Intern, Provider team
+            <div class="job job--wordmark">
+                <div class="job-entry">
+                    <span class="job-date">2019</span>
+                    <span class="job-title"><img src="teladoc-wordmark.webp" alt="Teladoc" class="job-company-logo job-company-logo--teladoc"></span>
+                </div>
+                <div class="section-description job-detail">
+                    iOS Engineer Intern, Provider team
+                </div>
             </div>
             
-            <!-- Skills Section -->
+            <!-- Skills Section
             <div class="skills-container">
                 <div class="skill-category">
                     <div class="skills-grid">
@@ -1271,6 +1697,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
 
         <!-- Links Section -->
@@ -1294,9 +1721,15 @@
             </div>
         </div>
 
+
+        <div class="portrait-particles" aria-label="Self-portrait">
+            <canvas id="particleCanvas"></canvas>
+            <button id="changeColorButton" type="button">Remix Colors</button>
+        </div>
+
         <!-- Footer Section -->
         <div class="footer">
-            <p>Designed and built by Atara Weinreb © 2026</p>
+            <p>Designed and built by Atara Weinreb © 2026<span class="footer-marks">𓅰 𓅬 𓅭 𓅮 𓅯</span></p>
         </div>
     </div>
 
@@ -1316,6 +1749,117 @@
                 link.style.backgroundSize = '';
             });
         });
+
+        const portraitButton = document.querySelector('.intro-photo-button');
+        if (portraitButton) {
+            const greetings = ['hiya!', '❤️', 'howdy!', '🔥', 'oh hi!'];
+            const bubble = portraitButton.querySelector('.portrait-bubble');
+            let greetingIndex = 0;
+            let bubbleTimer = 0;
+            portraitButton.addEventListener('click', () => {
+                const greeting = greetings[greetingIndex];
+                greetingIndex = (greetingIndex + 1) % greetings.length;
+                bubble.textContent = greeting;
+                portraitButton.setAttribute('aria-label', greeting);
+
+                bubble.classList.remove('is-showing');
+                void bubble.offsetWidth;
+                bubble.classList.add('is-showing');
+
+                clearTimeout(bubbleTimer);
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (reduceMotion) {
+                    bubbleTimer = setTimeout(() => bubble.classList.remove('is-showing'), 1400);
+                }
+            });
+            bubble.addEventListener('animationend', () => bubble.classList.remove('is-showing'));
+        }
+
+        const googleButton = document.querySelector('.blurb-wordmark-button');
+        if (googleButton) {
+            const googleColors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
+            let googleShow = 0;
+
+            function clearGoogleShow() {
+                googleButton.querySelectorAll('.google-effect').forEach((el) => el.remove());
+            }
+
+            function showKite() {
+                const kite = document.createElement('span');
+                kite.className = 'google-effect google-kite';
+                kite.innerHTML = `<svg viewBox="0 0 48 86" aria-hidden="true">
+                    <path d="M24 42 C30 54 16 64 24 78" fill="none" stroke="rgba(240,240,240,0.85)" stroke-width="1.15" stroke-linecap="round"/>
+                    <path d="M20 62 h8" stroke="#EA4335" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M21 70 h6" stroke="#FBBC04" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M24 6 L42 26 L24 26 Z" fill="#4285F4"/>
+                    <path d="M24 6 L6 26 L24 26 Z" fill="#EA4335"/>
+                    <path d="M24 46 L42 26 L24 26 Z" fill="#FBBC04"/>
+                    <path d="M24 46 L6 26 L24 26 Z" fill="#34A853"/>
+                    <path d="M24 6 V46 M6 26 H42" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.7"/>
+                </svg>`;
+                googleButton.appendChild(kite);
+                kite.addEventListener('animationend', (event) => {
+                    if (event.target === kite) kite.remove();
+                });
+            }
+
+            function showRocket() {
+                const rocket = document.createElement('span');
+                rocket.className = 'google-effect google-rocket';
+                rocket.innerHTML = `<svg viewBox="0 0 36 68" aria-hidden="true">
+                    <g class="rocket-flame">
+                        <path d="M18 46 C12 54 15 64 18 66 C21 64 24 54 18 46 Z" fill="#FBBC04"/>
+                        <path d="M18 46 C15 52 16.4 58 18 60 C19.6 58 21 52 18 46 Z" fill="#EA4335"/>
+                    </g>
+                    <path d="M18 4 C27 14 27 40 23 46 H13 C9 40 9 14 18 4 Z" fill="#4285F4"/>
+                    <circle cx="18" cy="24" r="4.2" fill="#e8f0fe"/>
+                    <path d="M10 34 L3 48 L14 44 Z" fill="#34A853"/>
+                    <path d="M26 34 L33 48 L22 44 Z" fill="#EA4335"/>
+                </svg>`;
+                googleButton.appendChild(rocket);
+                rocket.addEventListener('animationend', (event) => {
+                    if (event.target === rocket) rocket.remove();
+                });
+            }
+
+            function showConfetti() {
+                const wrap = document.createElement('span');
+                wrap.className = 'google-effect';
+                const count = 18;
+                let pending = count;
+                for (let i = 0; i < count; i++) {
+                    const bit = document.createElement('span');
+                    bit.className = 'google-bit';
+                    const angle = -Math.PI * 0.15 - (Math.PI * 0.7 * i) / (count - 1);
+                    const distance = 36 + (i % 5) * 8;
+                    bit.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+                    bit.style.setProperty('--dy', Math.sin(angle) * distance + 'px');
+                    bit.style.setProperty('--spin', ((i % 2 === 0 ? 1 : -1) * (120 + i * 18)) + 'deg');
+                    bit.style.setProperty('--delay', ((i % 4) * 0.03) + 's');
+                    bit.style.setProperty('--c', googleColors[i % googleColors.length]);
+                    bit.style.setProperty('--w', (i % 3 === 0 ? 5 : 7) + 'px');
+                    bit.style.setProperty('--h', (i % 3 === 1 ? 5 : 8) + 'px');
+                    bit.style.setProperty('--r', i % 4 === 0 ? '50%' : '1px');
+                    wrap.appendChild(bit);
+                    bit.addEventListener('animationend', () => {
+                        pending -= 1;
+                        if (pending === 0) wrap.remove();
+                    });
+                }
+                googleButton.appendChild(wrap);
+            }
+
+            const googleShows = [showRocket, showConfetti, showKite];
+            const googleShowsMobile = [showConfetti, showKite, showRocket];
+            const googleMobile = window.matchMedia('(max-width: 768px)');
+            googleButton.addEventListener('click', () => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                clearGoogleShow();
+                const shows = googleMobile.matches ? googleShowsMobile : googleShows;
+                shows[googleShow]();
+                googleShow = (googleShow + 1) % shows.length;
+            });
+        }
 
         // Track visited links
         document.querySelectorAll('.external-link').forEach(link => {
@@ -1381,6 +1925,627 @@
 
         // // Initialize the clock on page load
         // updateClock();
+    </script>
+
+    <script>
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
+const particles = [];
+const mouse = { x: null, y: null };
+
+const asciiArt = `
+  .....                                                                                                                                                                                                                       
+
+                                                                                                                                                                            ..........                        ..                                                                                                                                                                                                
+
+                                                                                                                                                                           .....                                                                                                                                                                                                                                
+
+                                                                                                                                                                           ....                                            ...                                                                                                                                                                                  
+
+                                                                                                                                                                         ....                                                                                                                                                                                                                                   
+
+                                                                                                                                                                       ..                                                                                                                                                                                                                                       
+
+                                                                                                                                                                                                                                                                                                                                                                                                                
+
+                                                                                                                                                                                                                                                                                                                                                                                                                
+
+                                                                                                                                                             .                                                                                                                                                                                                                                                  
+
+                                                                                                                                                                                                                                                       .                                                                                                                                                        
+
+                                                                                                                                                       ...                                                                                               ...                                                                                                                                                    
+
+                                                                                                                                                                                                                                                            ...                                                                                                                                                 
+
+                                                                                                                                                                                                                                                               ..                                                                                                                                               
+
+                                                                                                                                                                                                                                                                  .                                                                                                                                             
+
+                                                                                                                                                                                                                                                                    .                                                                                                                                           
+
+                                                                                                                                                                                                                                                                                                                                                                                                                
+
+                                                                                                                                             ..                                                                                                                                                                                                                                                                 
+
+                                                                                                                                            .                                                                                                                                                                                                                                                                   
+
+                                                                                                                                          ..                                                           ..                                                                                                                                                                                                       
+
+                                                                                                                                                                                          ....................                                                                                                                                                                                                  
+
+                                                                                                                                                                                     ......................................                                                                                                                                                                                     
+
+                                                                                                                                        .                                         ................................................                                                                                                                                                                              
+
+                                                                                                                                                                                ......................................................                                                                                                                                                                          
+
+                                                                                                                                                                             .............................................................                                                                                                                                                                      
+
+                                                                                                                                                                          ..................................................................                                                                                                                                                                    
+
+                                                                                                                                                                         .....................................................................                                                                                                                                                                  
+
+                                                                                                                                                                       ........................................................................                                                                                                                                                                 
+
+                                                                                                                                                                     ...........................................................................                                                                                                                                                                
+
+                                                                                                                                                                  ..............................................................................                                                                                                                                                                
+
+                                                                                                                                                                 ................................................................................                                                                                                                                                               
+
+                                                                                                                                                                .................................................................................                                                                                                                                                               
+
+                                                                                                                                                                .................................................................................                                                                                                                                                               
+
+                                                                                                                                                                ..................................................................................                                                                                                                                                              
+
+                                                                                                                                                               ...................................................................................                                                                                                                                                              
+
+                                                                                                                                                               ....................................................................................                                                                                                                                                             
+
+                                                                                                                                                               .....................................................................................                                                                                                                                                            
+
+                                                                                                                                                               ......................................................................................                                                                                                                                                           
+
+                                                                                                                                                               .......................................................................................                                                                                                                                                          
+
+                                                                                                                                                              ..........................................................................................                                                                                                                                                        
+
+                                                                                                                                                              ...........................................................................................                                                                                                                                                       
+
+                                                                                                                                                              .................................................................            ..............                                                                                                                                                       
+
+                                                                                                                                                             ................                    ..........................                         .....                                                                                                                                                       
+
+                                                                                                                                                            ............                            .......................                            ..                                                                                                                                                       
+
+                                                                                                                                                           ..........                               .......................                ......                                                                                                                                                               
+
+                                                                                                                                                          .........      ..................... .. .......................         ....................                                                                                                                                                          
+
+                                                                                                                                                          .......    ..............        .............................       .....          ...........                                                                                                                                                       
+
+                                                                                                                                                         ..................                   .........................      ...                    ......                                                                                                                                                      
+
+                                                                                                                                                        ................                         ......................    ...                          .                                                                                                                                                       
+
+                                                                                                                                                        ..............                            .....................  ....                                                                                                                                                                                   
+
+                                                                                                                                                       ..............                             ............................                                                                                                                                                                                  
+
+                                                                                                           ..                                          ...............               ....... .............................................                 ..                                                                                                                                                   
+
+                                                                                                          ..                                           ................................         ................................        . ....      .........                                                                                                                                                   
+
+                                                                                                          .                                           ..................................... ...........................................    ...................                                                                                                                                                  
+
+                                                                                                                                                      ........................................................................................................                                                                                                                                                  
+
+                                                                                                                                                      ........................................................................................................                                                                                                                                                  
+
+                                                                                                                                                      ........................................................................................................                                                                                                                                                  
+
+                                                                                                                                                      .........................................................................................................                                                                                                                                                 
+
+                                                                                                                                                     ...........................................................................................................                                                                                                                                                
+
+                                                                                                    .                                                 .........................................................................................................                                                                                                                                                 
+
+                                                                                                   .                                                 ...........................................................................................................                                                                                                                                                
+
+                                                                                                        .                                             ..........................................................................................................                                                                                                                                                
+
+                                                                                                      ...                                             .........................................................................................................                                                                                                                                                 
+
+                                                                                                     ...                                              ..........................................................................  .............................                                                                                                                                                 
+
+                                                                                                     ..                                               ...............................................      .........              ............................                                                                                                                                                  
+
+                                                                                                   ...                                                ..............................................         ......             ..............................                                                                                                                                                  
+
+                                                                                                   ..                                                 .....................................................                   .............................                                                                                                                                                     
+
+                                                                                                  ..                                                   .............................   .......................              ..............  .............                                                                                                                                                       
+
+                                                                                                 .                                              .      ..........................     ..........................   ......................      .........                                                                                                                                                        
+
+                                                                                                                                                     . ........................     .....................................................         ...                                                                                                                                                           
+
+                                                                                                                                                 ... ........................     ......................................................          ......                                                                                                                                                        
+
+                                                                                                                                                  .  ........................  .... ...............................                 .         .. ..........                                                                                                                                                     
+
+                                                                                                                                                     .. ..........................  .....                                                    ..............                                                                                                                                                     
+
+                                                                                                                                                         .........................                                                          ..............                                                                                                                                                      
+
+                                                                                                                                                          ..........................         ................................... .          ..............                                                                                                                                                      
+
+                                                                                                                                                          .............................      ................................... .        ...............                                                                                                                                                       
+
+                                                                                                                                                           ..............................       ............................ ..         .................                                                                                                                                                       
+
+                                                                                                                                                            .................................   .  ... ................                .................                                                                                                                                                        
+
+                                                                                                                                                             ........................................  ...  ..              ..        .................                                                                                                                                                         
+
+                                                                                                                                                              .............................. .................................       .................                                                                                                                                                          
+
+                                                                                                                                                               ...............................  ............................         ................                                                                                                                                                           
+
+                                                                                                                                                                 ...............................      ..................            ...............                                                                                                                                                             
+
+                                                                                                                                                                  ..................................         .. ..                 ...............                                                                                                                                                              
+
+                                                                                                                                                                    ....................................                        ................                                                                                                                                                                
+
+                                                                                                                                                                     ......................................                ...................                                                                                                                                                                  
+
+                                                                                                                                                                       .....................................................................                                                                                                                                                                    
+
+                                                                                                                                                                         .................................................................                                                                                                                                                                      
+
+                                                                                                                                                                            ............................................................                                                                                                                                                                        
+
+                                                                                                                                                                               .......................................................                                                                             .                                                                                            
+
+                                                                                                                                                                                   .................................................                                                                                .                                                                                           
+
+                                                                                                                                                                         ..           ...........................................                                                                                    .                                                                                          
+
+                                                                                                                                                                         .....              ..................................                                                                                         .                                                                                        
+
+                                                                                                                                                ....                     .............         ..........................                                                                                               ..                                                                                      
+
+                                                                                                                                              ..........                 ..................                                                                                                                               ..                                                                                    
+
+                                                                                                                                              ..........                ........................ .                                                                                                                          .                                                                                   
+
+                                                                                                                                              ..........                .............................                                                                                                                       .                                                                                   
+
+                                                                                                                                               ........                 ....................................                                                                                                                                                                                                    
+
+                                                                                        ...                                                                            .......................................                                                                                                                                                                                                  
+
+                                                                                     .....                                                                            ...........................................                                                                                                                                                                                               
+
+                                                                                     ...                                                                              ............................................                                                                                                                                                                                              
+
+                                                                                                                                                                     ..............................................                                                                                                                                                                                             
+
+                                                                                                                                                                     ............................................                                                                                                                                                                                               
+
+                                                                                                                                                                    ...............................................        .....                                                                                                                                                                                
+
+                                                                                                                                                                    ..............................................................                                                                                                                                                                              
+
+                                                                             ..                                                                                    ...............................................................                                                                                                                                                                              
+
+                                                                           ..                                                                                    ..................................................................                                                                                                                                                                             
+
+                                                                         ...                                                                                     ....................................................................                                                                                    ..                                                                                     
+
+                                                                       ....                                                                                    ......................................................................                                                                                     ....                                                                                  
+
+                                                                      ...                                                                                      ......................................................................                                                                                       .....                                                                               
+
+                                                                     ..                                                                                       ........................................................................                                                                                        ......                                                                            
+
+                                                                   ..                                                                                       ..........................................................................                                                                                            .....                                                                         
+
+                                                                 ...                                                                                        ............................................................................                                                                                            .....                                                                       
+
+                                                                ...                                                                                       .............................................................................                                                                                                ....                                                                     
+
+                                                               ...                                                                                       ...............................................................................         ...  .                                                                                .....                                                                    
+
+                                                               ..                                                                                       ..................................................................................................                                                                               ....                                                                   
+
+                                                              ...   .                                                                                  ......................................................................................................                                                                              ...                                                                  
+
+                                                              ..  ..                                                                                 ...........................................................................................................        ....                                                                ....                                                                
+
+                                                              .                                                                                    ................................................................................................................   ........                                                               ....                                                               
+
+                                                                               .....                                                           .. ...............................................................................................................         .........                                                            ..                                                               
+
+                                                                       .........                              ............         ...        .................................................................................................................                    .........                                                   ..                                                               
+
+                                                                ...........                              ...........................         ..       .......................................................................................................                                   .....                                           ..                                                              
+
+                                                              ........                             ............. .................                       ..................................................................................................                                                                 ...                                                                                 
+
+                                                             ..........           ......................                   ....                             ............................................................................................                                                                                                                                                        
+
+                                                                ......... ........................                                                              ...........................................................................................                                                                                    .....                                                            
+
+                                                                   ...............                                                                                ...............................................................................................                                                                              .....                                                            
+
+                                                                     .......                                                                                  ............................................................................................................      ....                                                          ....                                                              
+
+                                                                       ......                                                                           ....................................................................................        ...................................           ...........                                                                                                   
+
+                                                                           ...                             .....                               .........................................................................................                           .....................................................                                                                                        
+
+                                                                                                       ..............              ....................................              ..............................................                                      ......     .......................    .............................                                                                    
+
+                                                                                                   ...................... ...............................                                  .................................                                                            ............                   .......................                                                                  
+
+                                                  ....                              ....       .............     ........ .........................                                                      .....                                                                                                                 ...............                                                                  
+
+                                                 ........                       .......................               ... .........                                                                                                                                                                                                      .....              ....                                                
+
+                                                ..............                  .....................                                                                                                                                                                                                                                                    ........                                               
+
+                                                .................               .................                                                                                                                                                                                                                                                   ..............                                              
+
+                                                   ..................                                                                                                                                                         ....................       ...........                                                                           ....................                                             
+
+                                                      ..................                                                                                                             ..................................................................................................                     ........                        ........................                                            
+
+                                                           .................                                                                                .......      ..................................................................................................................            ..................                   ................                                                    
+
+                                                               .................                         ..........                                  .....................................................................................................         ...........................................................             ...........                                                          
+
+                                                                    ..............                      ..............             ..............................................................                                                                       .........     ..........................   ................        ......                                                               
+
+                                                                        ..........                   ............................................................   ...............                                                                                                        ................          ...................   .                             .                                      
+
+                                                                           .......                 ......         .......................................                                                                                                                                                               ..................                                .                                     
+
+                                                                               ....  ..................                ..............                                                                                                                                                                                        ............                                  ..                                   
+
+                                          ...                                     ....................                                                                                                                                                                                                                           .......                                .......                                 
+
+                                         ........                                 ..................                                                                                                                                                                                                                                  .                             ............                                
+
+                                        .............                              ...............                                                                                                                                                         .......                                                                                              ................                                
+
+                                        ..................                         ..                                                                                                                                                              ......................         .......                                                                  .....................                                
+
+                                          .....................                                            .                                                                                                     .............................................................................                       ...                            ............................                                
+
+                                              ........................                                 ...........                                         ..............................................................................................................................................................                       ..........................                                      
+
+                                                    ....................                            ...................           ....................................................................................................................                 ..................................................                    ...........................       .                                
+
+                                                         .................                       ............................................................................................................................................                                                ............................              ......................          ..                                       
+
+                                                               .............                    ...........      ..............................................                .............................                                                                                              ..........               ..............                      ..                                       
+
+                                                                           ....                ........              ..............                                                                                                                                                                                        ...    .............                        ..                                       
+
+                                                                             .....            ......                                                                                                                                                                                                                       ..........                                                                           
+
+                                                                              .....        ........                                                                                                                                                                                                                        ........                                                                             
+        `;
+
+function glowColor(hue) {
+  const h = ((hue % 360) + 360) % 360;
+  const yellowLift = Math.cos(((h - 60) * Math.PI) / 180);
+  const lightness = Math.min(74, Math.max(56, 66 - 9 * yellowLift));
+  return `hsl(${h}, 100%, ${lightness}%)`;
+}
+
+const colorThemes = [
+() => glowColor(Math.random() * 360), // Rainbow
+() => [glowColor(0), "#FFFFFF", glowColor(225)][Math.floor(Math.random() * 3)], // Red, White, and Blue
+() => glowColor(Math.random() * 30 + 330), // Shades of Pink
+() => glowColor(Math.random() * 240 + 180), // Shades of Blue
+() => glowColor(Math.random() * 120), // Shades of Green
+() => glowColor(Math.random() * 60 + 270), // Shades of Purple
+() => ["#FF4500", "#FF6347", "#FFD700"][Math.floor(Math.random() * 3)] // Sunset (Orange, Red, Yellow)
+];
+let currentThemeIndex = 0;
+
+const portraitDesktop = window.matchMedia("(min-width: 1200px)");
+let portraitAnimating = false;
+let portraitFrame = 0;
+let portraitListening = false;
+let portraitColorTimer = 0;
+let portraitBlocked = false;
+let portraitBenchmarked = false;
+
+function advancePortraitColors() {
+  if (!particles.length) return;
+  currentThemeIndex = (currentThemeIndex + 1) % colorThemes.length;
+  particles.forEach(particle => {
+    particle.color = colorThemes[currentThemeIndex]();
+  });
+  syncColorButton();
+}
+
+function schedulePortraitColors() {
+  if (portraitColorTimer) clearInterval(portraitColorTimer);
+  portraitColorTimer = setInterval(advancePortraitColors, 2000);
+}
+
+function stopPortrait() {
+  portraitAnimating = false;
+  if (portraitFrame) cancelAnimationFrame(portraitFrame);
+  portraitFrame = 0;
+  if (portraitColorTimer) {
+    clearInterval(portraitColorTimer);
+    portraitColorTimer = 0;
+  }
+  particles.length = 0;
+  if (portraitListening) {
+    window.removeEventListener("mousemove", onPortraitMouseMove);
+    portraitListening = false;
+  }
+  if (canvas.width || canvas.height) {
+    canvas.width = 0;
+    canvas.height = 0;
+  }
+}
+
+function portraitClearlyWeak() {
+  const memory = navigator.deviceMemory;
+  return typeof memory === "number" && memory > 0 && memory <= 2;
+}
+
+function hidePortrait() {
+  portraitBlocked = true;
+  stopPortrait();
+  const section = document.querySelector(".portrait-particles");
+  if (section) section.style.display = "none";
+}
+
+function benchmarkPortrait() {
+  if (portraitBlocked || portraitBenchmarked || !portraitAnimating) return;
+  if (document.visibilityState !== "visible") return;
+  const start = performance.now();
+  let frames = 0;
+  function sample(now) {
+    if (portraitBlocked || !portraitAnimating) return;
+    if (document.visibilityState !== "visible") return;
+    frames += 1;
+    if (now - start < 1000) {
+      requestAnimationFrame(sample);
+      return;
+    }
+    portraitBenchmarked = true;
+    if (frames < 24) hidePortrait();
+  }
+  requestAnimationFrame(sample);
+}
+
+function resizeCanvas() {
+  if (portraitBlocked || portraitClearlyWeak()) {
+    hidePortrait();
+    return;
+  }
+  if (!portraitDesktop.matches) {
+    stopPortrait();
+    return;
+  }
+  const size = Math.min(600, Math.floor(canvas.parentElement.clientWidth));
+  if (size < 1) return;
+  if (!portraitListening) {
+    window.addEventListener("mousemove", onPortraitMouseMove);
+    portraitListening = true;
+  }
+  if (canvas.width !== size || canvas.height !== size) {
+    canvas.width = size;
+    canvas.height = size;
+    createParticlesFromAscii();
+  }
+  if (!portraitAnimating) {
+    portraitAnimating = true;
+    animate();
+  }
+  if (!portraitColorTimer) schedulePortraitColors();
+  benchmarkPortrait();
+}
+
+function createParticlesFromAscii() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const fontSize = Math.min(canvas.width / 350, canvas.height / 350); // Adjust font size based on canvas size
+  const lineHeight = fontSize * 1; // Set line height slightly larger than font size
+  ctx.font = `${fontSize}px Arial`;
+  ctx.fillStyle = "white";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+
+  const lines = asciiArt.split("\n");
+  const maxLineLength = Math.max(...lines.map(line => line.length));
+  const textWidth = maxLineLength * fontSize;
+  const textHeight = lines.length * lineHeight;
+
+  const offsetX = (canvas.width - textWidth) / 2;
+  const offsetY = (canvas.height - textHeight) / 2;
+
+  particles.length = 0;
+
+  lines.forEach((line, y) => {
+    for (let x = 0; x < line.length; x++) {
+      if (line[x] !== " ") {
+        particles.push(
+        new Particle(
+        offsetX + x * fontSize,
+        offsetY + y * lineHeight, // Adjust vertical position based on line height
+        colorThemes[currentThemeIndex]()));
+
+
+      }
+    }
+  });
+  syncColorButton();
+}
+
+function syncColorButton() {
+  const button = document.getElementById("changeColorButton");
+  if (!button) return;
+  if (!particles.length || !canvas.height) {
+    button.style.marginTop = "14px";
+    return;
+  }
+
+  let maxY = 0;
+  for (let i = 0; i < particles.length; i++) {
+    if (particles[i].baseY > maxY) maxY = particles[i].baseY;
+  }
+  const scale = canvas.clientHeight / canvas.height;
+  const unused = (canvas.height - maxY - 2) * scale;
+  button.style.marginTop = Math.round(-unused + 14) + "px";
+
+  const stops = outlineStops();
+  button.style.background =
+    "linear-gradient(var(--background-color), var(--background-color)) padding-box, linear-gradient(90deg, " +
+    stops.join(", ") +
+    ") border-box";
+}
+
+function particleHsl(color) {
+  const hsl = /^hsl\(\s*([\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*\)$/i.exec(color);
+  if (hsl) return { h: +hsl[1] % 360, s: +hsl[2], l: +hsl[3], css: color };
+  const hex = /^#([0-9a-f]{6})$/i.exec(color);
+  if (!hex) return null;
+  const r = ((parseInt(hex[1], 16) >> 16) & 255) / 255;
+  const g = ((parseInt(hex[1], 16) >> 8) & 255) / 255;
+  const b = (parseInt(hex[1], 16) & 255) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  let h = 0;
+  let s = 0;
+  const d = max - min;
+  if (d) {
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h *= 60;
+  }
+  return { h, s: s * 100, l: l * 100, css: color };
+}
+
+function outlineStops() {
+  const vivid = [];
+  const stride = Math.max(1, Math.floor(particles.length / 280));
+  for (let i = 0; i < particles.length; i += stride) {
+    const parsed = particleHsl(particles[i].color);
+    if (!parsed || parsed.s < 55 || parsed.l < 48 || parsed.l > 76) continue;
+    vivid.push(parsed);
+  }
+  const pool = vivid.length >= 3 ? vivid : [];
+  if (pool.length < 3) {
+    for (let i = 0; i < particles.length && pool.length < 12; i += stride) {
+      const parsed = particleHsl(particles[i].color);
+      if (parsed) pool.push(parsed);
+    }
+  }
+  pool.sort((a, b) => a.h - b.h);
+  const stops = [];
+  const count = Math.min(3, pool.length);
+  for (let i = 0; i < count; i++) {
+    stops.push(pool[Math.floor((i + 0.5) * pool.length / count)].css);
+  }
+  return stops.length ? stops : ["#39ff6a"];
+}
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.baseX = x;
+    this.baseY = y;
+    this.size = 1;
+    this.color = color;
+    this.velocityX = Math.random() * 1 - 0.5;
+    this.velocityY = Math.random() * 1 - 0.5;
+  }
+
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  update() {
+    let dx = mouse.x - this.x;
+    let dy = mouse.y - this.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+    let forceDirectionX = dx / distance;
+    let forceDirectionY = dy / distance;
+    let force = (100 - distance) / 100;
+    let directionX = forceDirectionX * force * 5;
+    let directionY = forceDirectionY * force * 5;
+
+    if (distance < 100) {
+      this.x -= directionX;
+      this.y -= directionY;
+      this.x += this.velocityX;
+      this.y += this.velocityY;
+    } else {
+      if (this.x !== this.baseX) {
+        let dx = this.x - this.baseX;
+        this.x -= dx / 10;
+      }
+      if (this.y !== this.baseY) {
+        let dy = this.y - this.baseY;
+        this.y -= dy / 10;
+      }
+    }
+
+    if (this.x < 0 || this.x > canvas.width) this.velocityX = -this.velocityX;
+    if (this.y < 0 || this.y > canvas.height) this.velocityY = -this.velocityY;
+  }}
+
+
+function animate() {
+  if (!portraitAnimating) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(particle => {
+    particle.draw();
+    particle.update();
+  });
+  portraitFrame = requestAnimationFrame(animate);
+}
+
+document.
+getElementById("changeColorButton").
+addEventListener("click", function () {
+  advancePortraitColors();
+  schedulePortraitColors();
+});
+
+function onPortraitMouseMove(event) {
+  mouse.x = event.x - canvas.getBoundingClientRect().left;
+  mouse.y = event.y - canvas.getBoundingClientRect().top;
+}
+
+portraitDesktop.addEventListener("change", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") benchmarkPortrait();
+});
+
+if (portraitDesktop.matches) resizeCanvas();
     </script>
 </body>
 
